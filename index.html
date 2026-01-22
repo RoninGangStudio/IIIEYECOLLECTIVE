@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>III EYE COLLECTIVE | Technical Wellness Consortium</title>
-    <meta name="description" content="Consorcio Técnico de Bienestar. Exhibición informativa y educativa.">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>III EYE COLLECTIVE | Lifestyle & Wellness</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -18,17 +17,13 @@
                 extend: {
                     colors: {
                         cocoa: '#1a0f0d',
+                        lightCocoa: '#3c2218',
                         cream: '#f3e5ab',
-                        gold: '#C5A059',
-                        'gold-dim': 'rgba(197, 160, 89, 0.15)',
+                        gold: '#C5A059'
                     },
                     fontFamily: {
                         serif: ['"Bodoni Moda"', 'serif'],
                         sans: ['"Inter"', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'monospace'],
-                    },
-                    backgroundImage: {
-                        'hero-img': "url('https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=2000')",
                     }
                 }
             }
@@ -36,413 +31,286 @@
     </script>
 
     <style>
-        /* Estilos Globales y Utilidades Custom */
         body {
+            font-family: 'Inter', sans-serif;
             background-color: #1a0f0d;
             color: #f3e5ab;
-            overflow-x: hidden;
         }
-
-        /* Scrollbar personalizada */
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Bodoni Moda', serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Tu fondo degradado original */
+        .liquid-chocolate-bg {
+            background: linear-gradient(135deg, #1a0f0d 0%, #3c2218 50%, #1a0f0d 100%);
+            background-attachment: fixed;
+        }
+        /* Scrollbar de lujo */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
         ::-webkit-scrollbar-track {
             background: #1a0f0d;
         }
         ::-webkit-scrollbar-thumb {
-            background: #C5A059;
-            border-radius: 2px;
+            background: #3c2218;
+            border-radius: 4px;
         }
-
-        /* Clases de utilidad para efectos */
-        .glass-nav {
-            background: rgba(26, 15, 13, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4d2d1f;
         }
-
-        .tech-border {
-            border: 1px solid rgba(197, 160, 89, 0.3);
+        
+        /* Utilidades extra */
+        .glass-panel {
+            background: rgba(26, 15, 13, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(243, 229, 171, 0.1);
         }
-
-        /* Animaciones de entrada */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        .fade-in {
+            animation: fadeIn 1.2s ease-out;
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Hover efecto en imágenes */
-        .img-zoom-container {
-            overflow: hidden;
-        }
-        .img-zoom {
-            transition: transform 0.7s ease;
-        }
-        .img-zoom-container:hover .img-zoom {
-            transform: scale(1.05);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="antialiased selection:bg-gold selection:text-cocoa">
+<body class="liquid-chocolate-bg min-h-screen flex flex-col">
 
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 border-b border-transparent">
-        <div class="max-w-[1400px] mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="group flex flex-col items-start z-50">
-                <span class="font-serif text-2xl tracking-tight group-hover:text-gold transition-colors">III EYE</span>
-                <span class="font-mono text-[10px] tracking-[0.3em] text-gold uppercase">Collective</span>
-            </a>
-
-            <div class="hidden md:flex space-x-12 items-center">
-                <a href="#mandate" class="font-mono text-xs uppercase tracking-widest hover:text-gold transition-colors relative group">
-                    The Mandate
-                    <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-gold transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#catalog" class="font-mono text-xs uppercase tracking-widest hover:text-gold transition-colors relative group">
-                    The Catalog
-                    <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-gold transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#archives" class="font-mono text-xs uppercase tracking-widest hover:text-gold transition-colors relative group">
-                    The Archives
-                    <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-gold transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#inquiries" class="border border-gold text-gold hover:bg-gold hover:text-cocoa px-6 py-2 font-mono text-xs uppercase tracking-widest transition-all">
-                    Inquiries
-                </a>
+    <nav class="fixed w-full z-50 glass-panel transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-serif tracking-tighter text-cream hover:text-gold transition-colors cursor-pointer">
+                III EYE <span class="text-xs font-sans tracking-widest ml-1 uppercase opacity-70">Collective</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8 text-sm font-light tracking-widest uppercase">
+                <a href="#about" class="hover:text-gold transition-colors">The Mandate</a>
+                <a href="#catalog" class="hover:text-gold transition-colors">Catalog</a>
+                <a href="#gallery" class="hover:text-gold transition-colors">Archives</a>
+                <a href="#contact" class="hover:text-gold transition-colors">Inquiries</a>
             </div>
 
-            <button id="menu-btn" class="md:hidden z-50 text-gold focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <button class="md:hidden text-cream" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
             </button>
         </div>
-
-        <div id="mobile-menu" class="fixed inset-0 bg-cocoa z-40 transform translate-x-full transition-transform duration-500 flex flex-col justify-center items-center space-y-8">
-            <a href="#mandate" class="font-serif text-3xl hover:text-gold mobile-link">The Mandate</a>
-            <a href="#catalog" class="font-serif text-3xl hover:text-gold mobile-link">The Catalog</a>
-            <a href="#archives" class="font-serif text-3xl hover:text-gold mobile-link">The Archives</a>
-            <a href="#inquiries" class="font-serif text-3xl hover:text-gold mobile-link">Inquiries</a>
+        
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-cocoa border-b border-lightCocoa py-4 md:hidden">
+            <div class="flex flex-col items-center space-y-4 text-sm tracking-widest uppercase">
+                <a href="#about" class="hover:text-gold">The Mandate</a>
+                <a href="#catalog" class="hover:text-gold">Catalog</a>
+                <a href="#gallery" class="hover:text-gold">Archives</a>
+                <a href="#contact" class="hover:text-gold">Inquiries</a>
+            </div>
         </div>
     </nav>
 
-    <header class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-hero-img bg-cover bg-center bg-no-repeat bg-fixed"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-cocoa/90 via-cocoa/50 to-cocoa"></div>
+    <main class="flex-grow">
         
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBMMCAwTDQwIDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSwxOTcsIDE2MCwgODksIDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20"></div>
+        <section class="relative h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=2000" alt="Architecture" class="w-full h-full object-cover opacity-40 mix-blend-overlay">
+                <div class="absolute inset-0 bg-gradient-to-b from-cocoa/80 via-transparent to-cocoa"></div>
+            </div>
 
-        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
-            <div class="reveal">
-                <p class="font-mono text-gold text-xs tracking-[0.5em] mb-6 border-b border-gold/30 inline-block pb-2">SYSTEM STATUS: ONLINE</p>
-                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-tight mb-8 text-cream">
-                    TECHNICAL CONSORTIUM<br>
-                    <span class="italic text-gold opacity-90">OF WELL-BEING</span>
+            <div class="relative z-10 text-center px-4 max-w-4xl fade-in">
+                <p class="text-gold text-xs tracking-[0.4em] uppercase mb-6">Lifestyle & Wellness Consortium</p>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl text-cream mb-8 leading-tight">
+                    III EYE <br/> <span class="italic font-light opacity-90">COLLECTIVE</span>
                 </h1>
-                <p class="font-sans text-sm md:text-base text-cream/70 tracking-wide max-w-xl mx-auto border-l-2 border-gold pl-6 text-left">
-                    Una exploración entre la arquitectura sensorial y la biología sintética. 
-                    No comercializamos productos; registramos el estándar del bienestar futuro.
+                <p class="text-cream/80 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+                    Un consorcio técnico de bienestar dedicado a la preservación de experiencias sensoriales. 
+                    <br><span class="text-sm opacity-60 mt-4 block">No comercial. Solo educacional.</span>
                 </p>
-            </div>
-        </div>
-
-        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center animate-pulse">
-            <span class="font-mono text-[10px] text-gold mb-2">SCROLL_DOWN</span>
-            <div class="w-[1px] h-16 bg-gradient-to-b from-gold to-transparent"></div>
-        </div>
-    </header>
-
-    <section id="mandate" class="py-24 px-6 relative">
-        <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
-            <div class="order-2 lg:order-1 reveal">
-                <div class="flex items-center space-x-4 mb-6">
-                    <span class="font-mono text-gold text-xs">[01]</span>
-                    <h2 class="font-serif text-4xl md:text-5xl">The Mandate</h2>
-                </div>
-                <div class="space-y-6 font-sans text-cream/80 leading-relaxed text-lg font-light text-justify">
-                    <p>
-                        III EYE COLLECTIVE nace como una respuesta a la saturación comercial. Operamos bajo un marco estricto de rigor técnico y estética archivística.
-                    </p>
-                    <p>
-                        Nuestra filosofía no busca la transacción, sino la educación. Funcionamos como un repositorio visual y sensorial, donde cada elemento es tratado no como mercancía, sino como evidencia de un estilo de vida elevado. Cumplimos con todas las normativas legales vigentes, posicionándonos fuera del mercado tradicional.
-                    </p>
-                </div>
                 
-                <div class="mt-12 grid grid-cols-2 gap-4 border-t border-gold/20 pt-6">
-                    <div>
-                        <h4 class="font-mono text-gold text-xs mb-1">ORIGIN</h4>
-                        <p class="font-sans text-sm">Synthetic & Organic</p>
+                <div class="mt-12">
+                    <a href="#about" class="border border-cream/30 text-cream px-8 py-3 text-xs uppercase tracking-widest hover:bg-cream hover:text-cocoa transition-all duration-500">
+                        Explore The Mandate
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <span class="text-gold text-xs tracking-widest uppercase border-b border-gold/30 pb-2">The Mandate</span>
+                    <h2 class="text-4xl md:text-5xl text-cream">Arquitectura del Bienestar</h2>
+                    <p class="text-cream/70 leading-relaxed font-light text-justify">
+                        III EYE COLLECTIVE opera bajo un concepto de "Consorcio Técnico". Nuestra filosofía no es transaccional, sino exhibicionista e informativa. Utilizamos una estética de lujo minimalista para desestigmatizar y educar sobre compuestos botánicos y sintéticos, siempre dentro de un marco de cumplimiento legal estricto.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8 pt-4">
+                        <div>
+                            <h4 class="text-xl mb-2">Misión</h4>
+                            <p class="text-sm text-cream/60">Educación sensorial y preservación de archivos botánicos.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl mb-2">Visión</h4>
+                            <p class="text-sm text-cream/60">Elevar el estándar estético de la cultura del bienestar.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="font-mono text-gold text-xs mb-1">CLASS</h4>
-                        <p class="font-sans text-sm">Visionary Assets</p>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 border border-gold/20 transform translate-x-4 translate-y-4"></div>
+                    <img src="https://i.ibb.co/qYRLG007/image.png" alt="The Golden Rabbit" class="relative z-10 w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl">
+                </div>
+            </div>
+        </section>
+
+        <section id="catalog" class="py-24 bg-black/20">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="text-gold text-xs tracking-widest uppercase">The Inventory</span>
+                    <h2 class="text-4xl mt-3 mb-6">Specimen Catalog</h2>
+                    <p class="text-cream/50 text-sm max-w-lg mx-auto">Registro de unidades conceptuales. No disponibles para venta directa.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="group bg-lightCocoa/20 p-8 border border-white/5 hover:border-gold/30 transition-all duration-500">
+                        <div class="aspect-square mb-6 overflow-hidden bg-black/40 relative">
+                            <img src="https://i.ibb.co/tSvrc7m/image.png" alt="Dark Decadence" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <h3 class="text-2xl mb-2">Dark Decadence</h3>
+                        <p class="text-sm text-cream/60 font-light mb-4">Cacao 85% con notas terrosas profundas. Un perfil de sabor diseñado para la introspección.</p>
+                        <span class="text-[10px] text-gold uppercase tracking-widest border border-gold/30 px-2 py-1">Log Only</span>
+                    </div>
+
+                    <div class="group bg-lightCocoa/20 p-8 border border-white/5 hover:border-gold/30 transition-all duration-500">
+                        <div class="aspect-square mb-6 overflow-hidden bg-black/40 relative flex items-center justify-center">
+                            <img src="https://i.ibb.co/tSvrc7m/image.png" alt="Cookies Type" class="w-full h-full object-cover opacity-60 sepia group-hover:opacity-90 group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <h3 class="text-2xl mb-2">Cookies & Cream</h3>
+                        <p class="text-sm text-cream/60 font-light mb-4">Texturas contrastantes. Suavidad láctea interceptada por crujidos minerales sintéticos.</p>
+                        <span class="text-[10px] text-gold uppercase tracking-widest border border-gold/30 px-2 py-1">Log Only</span>
+                    </div>
+
+                    <div class="group bg-lightCocoa/20 p-8 border border-white/5 hover:border-gold/30 transition-all duration-500">
+                        <div class="aspect-square mb-6 overflow-hidden bg-black/40 relative">
+                            <img src="https://i.ibb.co/NndvybP3/image.png" alt="Zen Gumi" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <h3 class="text-2xl mb-2">Zen Gumi</h3>
+                        <p class="text-sm text-cream/60 font-light mb-4">Dosificación precisa en formato blando. Absorción rápida y diseño ergonómico.</p>
+                        <span class="text-[10px] text-gold uppercase tracking-widest border border-gold/30 px-2 py-1">Log Only</span>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="order-1 lg:order-2 reveal delay-200 relative group">
-                <div class="absolute -inset-4 border border-gold/30 z-0"></div>
-                <div class="absolute -inset-4 border border-gold/10 transform rotate-2 z-0"></div>
-                
-                <div class="relative z-10 img-zoom-container bg-black">
-                    <img src="https://i.ibb.co/qYRLG007/image.png" alt="The Golden Rabbit" class="w-full h-auto object-cover opacity-90 img-zoom grayscale group-hover:grayscale-0 transition-all duration-700">
-                    
-                    <div class="absolute bottom-0 left-0 w-full p-4 flex justify-between items-end bg-gradient-to-t from-black/90 to-transparent">
-                        <span class="font-mono text-[10px] text-gold">FIG A. BREAK THROUGH</span>
-                        <span class="font-mono text-[10px] text-cream/50">RENDER_ID: 9942</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="catalog" class="py-24 bg-cocoa relative border-y border-gold/10">
-        <div class="max-w-[1400px] mx-auto px-6">
-            <div class="flex justify-between items-end mb-16 reveal">
+        <section id="gallery" class="py-24 px-6 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-cream/10 pb-6">
                 <div>
-                    <span class="font-mono text-gold text-xs block mb-2">[02] INVENTORY LOG</span>
-                    <h2 class="font-serif text-4xl md:text-5xl">The Catalog</h2>
+                    <span class="text-gold text-xs tracking-widest uppercase">Visual Evidence</span>
+                    <h2 class="text-4xl mt-2">The Archives</h2>
                 </div>
-                <div class="hidden md:block text-right">
-                    <p class="font-mono text-[10px] text-gold">STATUS: DISPLAY_ONLY</p>
-                    <p class="font-mono text-[10px] text-cream/50">NO TRANSACTIONS PERMITTED</p>
+                <div class="mt-4 md:mt-0 text-right">
+                    <p class="text-xs text-cream/50">High Definition Logs</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="md:col-span-2 h-[500px] overflow-hidden relative group">
+                    <img src="https://i.ibb.co/fYZYjXHg/image.png" alt="Archive 1" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+                    <div class="absolute bottom-4 left-4 bg-cocoa/90 px-4 py-2">
+                        <p class="font-serif italic">Registro 01: Packaging</p>
+                    </div>
+                </div>
+                <div class="h-[400px] overflow-hidden relative group">
+                    <img src="https://i.ibb.co/ShKpnF4/image.png" alt="Archive 2" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+                    <div class="absolute bottom-4 left-4 bg-cocoa/90 px-4 py-2">
+                        <p class="font-serif italic">Registro 02: Receta Técnica</p>
+                    </div>
+                </div>
+                <div class="h-[400px] overflow-hidden relative group">
+                    <img src="https://i.ibb.co/NndvybP3/image.png" alt="Archive 3" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+                    <div class="absolute bottom-4 left-4 bg-cocoa/90 px-4 py-2">
+                        <p class="font-serif italic">Registro 03: Dossier</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="py-24 bg-lightCocoa/10">
+            <div class="max-w-3xl mx-auto px-6">
+                <h2 class="text-3xl text-center mb-12 font-serif">Protocolo & Preguntas</h2>
                 
-                <div class="group bg-black/20 p-6 tech-border hover:bg-gold-dim transition-all duration-500 reveal">
-                    <div class="aspect-square mb-6 overflow-hidden bg-black relative">
-                        <img src="https://i.ibb.co/tSvrc7m/image.png" alt="Specimen Visual" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-                        <div class="absolute top-2 right-2 bg-gold text-cocoa font-mono text-[9px] px-1">UNIT_01</div>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-2 group-hover:text-gold transition-colors">Dark Decadence</h3>
-                    <p class="font-sans text-xs text-cream/60 mb-4 h-10 overflow-hidden">Perfil de sabor profundo. Notas terrosas y acabado sedoso. Registro botánico primario.</p>
-                    <div class="flex justify-between items-center border-t border-gold/20 pt-4">
-                        <span class="font-mono text-[10px] text-gold">TYPE: EDIBLE</span>
-                        <span class="font-mono text-[10px] uppercase tracking-widest cursor-not-allowed opacity-50">Log Only</span>
-                    </div>
-                </div>
-
-                <div class="group bg-black/20 p-6 tech-border hover:bg-gold-dim transition-all duration-500 reveal delay-100">
-                    <div class="aspect-square mb-6 overflow-hidden bg-black relative flex items-center justify-center border border-dashed border-gold/20">
-                         <img src="https://i.ibb.co/tSvrc7m/image.png" alt="Specimen Visual" class="w-full h-full object-cover opacity-40 hue-rotate-30 sepia group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
-                        <div class="absolute top-2 right-2 bg-transparent border border-gold text-gold font-mono text-[9px] px-1">UNIT_02</div>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-2 group-hover:text-gold transition-colors">Cookies & Cream</h3>
-                    <p class="font-sans text-xs text-cream/60 mb-4 h-10 overflow-hidden">Fusión de texturas. Suavidad láctea con crujido mineral sintético.</p>
-                    <div class="flex justify-between items-center border-t border-gold/20 pt-4">
-                        <span class="font-mono text-[10px] text-gold">TYPE: HYBRID</span>
-                        <span class="font-mono text-[10px] uppercase tracking-widest cursor-not-allowed opacity-50">Log Only</span>
-                    </div>
-                </div>
-
-                <div class="group bg-black/20 p-6 tech-border hover:bg-gold-dim transition-all duration-500 reveal delay-200">
-                    <div class="aspect-square mb-6 overflow-hidden bg-black relative flex items-center justify-center border border-dashed border-gold/20">
-                         <img src="https://i.ibb.co/NndvybP3/image.png" alt="Zen Gumi" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-                        <div class="absolute top-2 right-2 bg-transparent border border-gold text-gold font-mono text-[9px] px-1">UNIT_03</div>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-2 group-hover:text-gold transition-colors">Zen Gumi</h3>
-                    <p class="font-sans text-xs text-cream/60 mb-4 h-10 overflow-hidden">Dosificación de precisión. Formato blando para absorción rápida.</p>
-                    <div class="flex justify-between items-center border-t border-gold/20 pt-4">
-                        <span class="font-mono text-[10px] text-gold">TYPE: GUMI</span>
-                        <span class="font-mono text-[10px] uppercase tracking-widest cursor-not-allowed opacity-50">Log Only</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="archives" class="py-24 px-6 max-w-[1400px] mx-auto">
-        <div class="text-center mb-16 reveal">
-            <span class="font-mono text-gold text-xs">[03] VISUAL EVIDENCE</span>
-            <h2 class="font-serif text-4xl md:text-5xl mt-2">The Archives</h2>
-            <p class="font-sans text-sm text-cream/50 mt-4 max-w-md mx-auto">Imágenes en alta definición. Sin filtros. Datos crudos de laboratorio.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="md:col-span-2 relative h-[500px] overflow-hidden group tech-border reveal">
-                <img src="https://i.ibb.co/fYZYjXHg/image.png" alt="Packaging Specimen" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-                <div class="absolute bottom-0 left-0 bg-cocoa/90 p-4 border-t border-r border-gold/30">
-                    <h4 class="font-serif text-xl">Registro 01</h4>
-                    <span class="font-mono text-[10px] text-gold">PACKAGING_DARK_DECADENCE</span>
-                </div>
-            </div>
-
-            <div class="relative h-[400px] overflow-hidden group tech-border reveal delay-100">
-                <img src="https://i.ibb.co/ShKpnF4/image.png" alt="Technical Recipe Log" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-                <div class="absolute bottom-0 left-0 bg-cocoa/90 p-4 border-t border-r border-gold/30">
-                    <h4 class="font-serif text-xl">Registro 02</h4>
-                    <span class="font-mono text-[10px] text-gold">HANDWRITTEN_RECIPE_LOG</span>
-                </div>
-            </div>
-
-            <div class="relative h-[400px] overflow-hidden group tech-border reveal delay-200">
-                <img src="https://i.ibb.co/NndvybP3/image.png" alt="Zen Gumi Pouch" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-                <div class="absolute bottom-0 left-0 bg-cocoa/90 p-4 border-t border-r border-gold/30">
-                    <h4 class="font-serif text-xl">Registro 03</h4>
-                    <span class="font-mono text-[10px] text-gold">ZEN_GUMI_DOSSIER</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="inquiries" class="py-24 bg-black/30 border-t border-gold/10">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-12 reveal">
-                <span class="font-mono text-gold text-xs">[04] COMMUNICATION</span>
-                <h2 class="font-serif text-4xl">Inquiries & Protocol</h2>
-            </div>
-
-            <div class="space-y-4 mb-16 reveal">
-                <div class="border-b border-gold/20 pb-4">
-                    <button class="w-full flex justify-between items-center text-left py-2 focus:outline-none" onclick="toggleAccordion(1)">
-                        <span class="font-sans text-lg text-cream">¿Cuál es la procedencia de los componentes?</span>
-                        <span id="icon-1" class="font-mono text-gold text-xl">+</span>
-                    </button>
-                    <div id="content-1" class="hidden pt-2">
-                        <p class="font-mono text-xs text-cream/70 leading-relaxed pl-4 border-l border-gold">
-                            Todos los componentes son seleccionados bajo estrictos estándares de calidad técnica. Nuestra cadena de suministro es transparente y ética, priorizando el bienestar sobre el volumen.
+                <div class="space-y-4">
+                    <details class="group bg-cocoa border border-cream/5 p-6 cursor-pointer">
+                        <summary class="flex justify-between items-center list-none text-lg font-medium text-cream">
+                            <span>¿Es posible realizar compras directas?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-cream/60 mt-4 font-light text-sm leading-relaxed">
+                            Negativo. III EYE COLLECTIVE opera como una exhibición educativa. No se procesan transacciones financieras en este portal digital.
                         </p>
-                    </div>
-                </div>
-                <div class="border-b border-gold/20 pb-4">
-                    <button class="w-full flex justify-between items-center text-left py-2 focus:outline-none" onclick="toggleAccordion(2)">
-                        <span class="font-sans text-lg text-cream">¿Es posible realizar compras directas?</span>
-                        <span id="icon-2" class="font-mono text-gold text-xl">+</span>
-                    </button>
-                    <div id="content-2" class="hidden pt-2">
-                        <p class="font-mono text-xs text-cream/70 leading-relaxed pl-4 border-l border-gold">
-                            Negativo. III EYE COLLECTIVE opera como una exhibición educativa y un club de membresía conceptual. No se procesan transacciones financieras en este portal digital.
+                    </details>
+
+                    <details class="group bg-cocoa border border-cream/5 p-6 cursor-pointer">
+                        <summary class="flex justify-between items-center list-none text-lg font-medium text-cream">
+                            <span>¿Cuál es el origen de los componentes?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-cream/60 mt-4 font-light text-sm leading-relaxed">
+                            Todos los componentes son seleccionados bajo estándares de calidad técnica y ética, priorizando el bienestar sobre el volumen comercial.
                         </p>
-                    </div>
+                    </details>
                 </div>
             </div>
+        </section>
 
-            <div class="bg-cocoa tech-border p-8 reveal delay-100">
-                <form class="space-y-6" onsubmit="event.preventDefault(); alert('Transmission Received. Protocol Initiated.');">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label class="font-mono text-[10px] text-gold uppercase">Identifier (Name)</label>
-                            <input type="text" class="w-full bg-black/40 border border-gold/30 p-3 text-cream text-sm focus:border-gold focus:outline-none transition-colors" placeholder="Enter identification">
-                        </div>
-                        <div class="space-y-2">
-                            <label class="font-mono text-[10px] text-gold uppercase">Contact Node (Email)</label>
-                            <input type="email" class="w-full bg-black/40 border border-gold/30 p-3 text-cream text-sm focus:border-gold focus:outline-none transition-colors" placeholder="Enter email address">
-                        </div>
+        <section id="contact" class="py-24 px-6 border-t border-cream/5">
+            <div class="max-w-xl mx-auto text-center">
+                <span class="text-gold text-xs tracking-widest uppercase">Inquiries</span>
+                <h2 class="text-4xl mb-8 mt-2">Contacto</h2>
+                <form class="space-y-4 text-left" onsubmit="event.preventDefault(); alert('Mensaje recibido. Gracias.');">
+                    <div>
+                        <input type="text" placeholder="Nombre / Identificador" class="w-full bg-lightCocoa/30 border border-cream/10 p-4 text-cream placeholder-cream/30 focus:outline-none focus:border-gold transition-colors">
                     </div>
-                    <div class="space-y-2">
-                        <label class="font-mono text-[10px] text-gold uppercase">Query Data (Message)</label>
-                        <textarea rows="4" class="w-full bg-black/40 border border-gold/30 p-3 text-cream text-sm focus:border-gold focus:outline-none transition-colors" placeholder="Input technical inquiry..."></textarea>
+                    <div>
+                        <input type="email" placeholder="Correo Electrónico" class="w-full bg-lightCocoa/30 border border-cream/10 p-4 text-cream placeholder-cream/30 focus:outline-none focus:border-gold transition-colors">
                     </div>
-                    <button type="submit" class="w-full md:w-auto bg-gold text-cocoa font-mono text-xs font-bold uppercase py-3 px-8 hover:bg-white transition-colors tracking-widest">
-                        Transmit Data
+                    <div>
+                        <textarea rows="4" placeholder="Mensaje" class="w-full bg-lightCocoa/30 border border-cream/10 p-4 text-cream placeholder-cream/30 focus:outline-none focus:border-gold transition-colors"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-cream text-cocoa font-bold uppercase tracking-widest py-4 hover:bg-gold transition-colors">
+                        Enviar Consulta
                     </button>
                 </form>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="bg-black py-16 px-6 border-t border-gold/30">
-        <div class="max-w-[1400px] mx-auto">
-            
-            <div class="border border-red-900/50 bg-red-900/10 p-6 mb-12 text-center md:text-left">
-                <h5 class="font-mono text-red-400 text-xs mb-2 uppercase font-bold">Disclaimer Legal & Compliance</h5>
-                <p class="font-sans text-xs text-cream/60 leading-relaxed">
-                    El contenido de este sitio tiene fines puramente informativos, educativos y artísticos. III EYE COLLECTIVE no promueve el uso de sustancias ilegales ni realiza venta directa de productos regulados a través de esta plataforma. Todas las imágenes son representaciones artísticas de archivo. El acceso a este sitio implica la aceptación de nuestros términos de uso y reconocimiento de la naturaleza conceptual del proyecto.
+        <section class="bg-black/40 py-8 px-6">
+            <div class="max-w-5xl mx-auto border-l-2 border-red-900/50 pl-6">
+                <h5 class="text-xs text-red-400 font-bold uppercase mb-2">Aviso Legal</h5>
+                <p class="text-xs text-cream/40 leading-relaxed max-w-3xl">
+                    El contenido de este sitio tiene fines puramente informativos, educativos y artísticos. III EYE COLLECTIVE no promueve el uso de sustancias ilegales ni realiza venta directa de productos regulados a través de esta plataforma. Todas las imágenes son representaciones artísticas de archivo. El acceso a este sitio implica la aceptación de nuestros términos de uso.
                 </p>
             </div>
+        </section>
 
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <span class="font-serif text-xl text-cream">III EYE COLLECTIVE</span>
-                    <p class="font-mono text-[10px] text-gold mt-1">© 2024 Technical Wellness Consortium</p>
-                </div>
+    </main>
 
-                <div class="flex space-x-6 items-center">
-                    <a href="https://www.instagram.com/iiieyecollective/" target="_blank" class="text-cream hover:text-gold transition-colors font-mono text-xs flex items-center gap-2">
-                        <span>INSTAGRAM_LINK</span>
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                    </a>
-                </div>
+    <footer class="bg-cocoa pt-16 pb-8 border-t border-cream/5">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0 text-center md:text-left">
+                <span class="font-serif text-xl block">III EYE COLLECTIVE</span>
+                <span class="text-[10px] text-cream/40 uppercase tracking-widest">© 2026 Todos los derechos reservados</span>
+            </div>
+            
+            <div class="flex space-x-6">
+                <a href="https://www.instagram.com/iiieyecollective/" target="_blank" class="text-cream/60 hover:text-gold transition-colors text-xs tracking-widest uppercase">
+                    Instagram
+                </a>
             </div>
         </div>
     </footer>
 
-    <script>
-        // 1. Navbar Scroll Effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('glass-nav');
-                navbar.classList.add('py-4');
-                navbar.classList.remove('py-6');
-            } else {
-                navbar.classList.remove('glass-nav');
-                navbar.classList.add('py-6');
-                navbar.classList.remove('py-4');
-            }
-        });
-
-        // 2. Mobile Menu Toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-        let isMenuOpen = false;
-
-        menuBtn.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            if (isMenuOpen) {
-                mobileMenu.classList.remove('translate-x-full');
-            } else {
-                mobileMenu.classList.add('translate-x-full');
-            }
-        });
-
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                isMenuOpen = false;
-                mobileMenu.classList.add('translate-x-full');
-            });
-        });
-
-        // 3. Scroll Reveal Animation
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        const revealOnScroll = () => {
-            const windowHeight = window.innerHeight;
-            const elementVisible = 150;
-            
-            revealElements.forEach((reveal) => {
-                const elementTop = reveal.getBoundingClientRect().top;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveal.classList.add('active');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', revealOnScroll);
-        // Trigger once on load
-        revealOnScroll();
-
-        // 4. FAQ Accordion Logic
-        function toggleAccordion(id) {
-            const content = document.getElementById(`content-${id}`);
-            const icon = document.getElementById(`icon-${id}`);
-            
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                icon.textContent = '-';
-            } else {
-                content.classList.add('hidden');
-                icon.textContent = '+';
-            }
-        }
-    </script>
 </body>
 </html>
