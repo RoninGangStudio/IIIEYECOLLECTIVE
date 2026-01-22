@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>III EYE COLLECTIVE | Menu 2026</title>
+    <title>III EYE COLLECTIVE | The Epoch 2026</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -19,298 +19,456 @@
             theme: {
                 extend: {
                     colors: {
-                        cocoa: '#18100e',        
-                        cocoaLight: '#261a17',
-                        cream: '#f0e6d2',        
-                        gold: '#d4af37',        
-                        goldDim: 'rgba(212, 175, 55, 0.2)',
+                        cocoa: '#120a08',        
+                        cocoaLight: '#1e1412',
+                        cream: '#f3e5ab',        
+                        gold: '#C5A059',        
+                        goldDim: 'rgba(197, 160, 89, 0.2)',
                     },
                     fontFamily: {
                         serif: ['"Bodoni Moda"', 'serif'],
                         sans: ['"Inter"', 'sans-serif'],
                         mono: ['"JetBrains Mono"', 'monospace'],
                     },
+                    backgroundImage: {
+                        'noise': "url('https://grainy-gradients.vercel.app/noise.svg')",
+                    }
                 }
             }
         }
     </script>
 
     <style>
+        /* Base Setup */
         body {
-            background-color: #18100e;
-            color: #f0e6d2;
+            background-color: #120a08;
+            color: #f3e5ab;
             overflow-x: hidden;
+            cursor: default; /* Keep default cursor for usability, stylize interactions */
         }
 
-        /* Ruido estético de fondo */
-        .noise {
+        /* Grain Overlay */
+        .noise-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
-            z-index: 50;
-            opacity: 0.04;
+            z-index: 9999;
+            opacity: 0.05;
             background-image: url('https://grainy-gradients.vercel.app/noise.svg');
         }
 
-        /* Scrollbar invisible */
-        ::-webkit-scrollbar { width: 0px; }
-        
-        /* EFECTO PRECIO SOLICITADO */
-        .price-trigger {
-            display: inline-block;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: none; /* Opcional: Oculta cursor para inmersión */
+        /* Utility */
+        .reveal-text {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
         }
-        .price-trigger:hover {
-            transform: scale(2.5); /* Aumenta tamaño considerablemente */
-            color: #d4af37; /* Cambia a dorado */
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-            z-index: 50;
-            position: relative;
+        
+        .char {
+            display: inline-block;
+            transform-origin: 50% 100%;
         }
 
-        /* Imágenes Cuadradas Hover */
-        .aspect-square {
-            aspect-ratio: 1 / 1;
+        /* Custom Scrollbar hide for clean look */
+        ::-webkit-scrollbar { width: 0px; }
+        
+        /* Image Hover Effect */
+        .img-hover-scale {
+            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
         }
-        .img-zoom {
-            transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        .group:hover .img-zoom {
+        .group:hover .img-hover-scale {
             transform: scale(1.1);
+        }
+
+        /* Loader */
+        .loader {
+            position: fixed;
+            inset: 0;
+            background: #120a08;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.8s ease-in-out;
         }
     </style>
 </head>
-<body class="selection:bg-gold selection:text-cocoa">
+<body class="antialiased selection:bg-gold selection:text-cocoa">
 
-    <div class="noise"></div>
+    <div class="noise-overlay"></div>
 
-    <nav class="fixed w-full z-40 py-6 px-6 flex justify-between items-center mix-blend-difference">
-        <div class="font-serif text-xl tracking-[0.2em] font-bold text-cream">III EYE</div>
-        <div class="font-mono text-[10px] uppercase text-gold tracking-widest hidden md:block">Elevate Your Senses</div>
+    <div class="loader" id="loader">
+        <div class="text-center">
+            <div class="font-serif text-3xl text-gold italic mb-2">III</div>
+            <div class="font-mono text-[9px] text-cream tracking-[0.5em] uppercase">Loading Consortium</div>
+        </div>
+    </div>
+
+    <nav class="fixed w-full z-50 py-6 transition-all duration-500 mix-blend-difference" id="navbar">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 flex justify-between items-center">
+            <div class="font-serif text-xl tracking-[0.2em] uppercase font-bold text-cream">
+                III EYE
+            </div>
+            <div class="hidden md:flex space-x-12 font-mono text-[9px] tracking-[0.2em] uppercase text-cream/80 backdrop-blur-sm px-6 py-2 border border-white/5 rounded-full">
+                <a href="#epoch" class="hover:text-gold transition-colors duration-300">Epoch</a>
+                <a href="#catalog" class="hover:text-gold transition-colors duration-300">Catalog</a>
+                <a href="#archives" class="hover:text-gold transition-colors duration-300">Archives</a>
+                <a href="#inquiries" class="hover:text-gold transition-colors duration-300">Contact</a>
+            </div>
+            <div class="md:hidden text-cream text-xs font-mono">MENU</div>
+        </div>
     </nav>
 
-    <header class="h-[70vh] flex flex-col justify-center items-center text-center px-4 relative overflow-hidden border-b border-white/5">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1606312619070-d48b4c652a52?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20 grayscale"></div>
-        <div class="relative z-10">
-            <h1 class="font-serif text-5xl md:text-8xl text-cream mb-4">The Collection</h1>
-            <p class="font-mono text-gold text-xs tracking-[0.3em] uppercase">Handmade Irresistible Delights</p>
+    <header class="relative h-screen min-h-[800px] flex flex-col items-center justify-center px-6 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?q=80&w=2070&auto=format&fit=crop" 
+                 class="w-full h-[120%] object-cover opacity-40 grayscale-[20%]" 
+                 alt="Cocoa Background"
+                 data-speed="0.5"> </div>
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-cocoa via-cocoa/40 to-transparent z-0"></div>
+
+        <div class="relative z-10 text-center max-w-7xl flex flex-col items-center">
+            <div class="flex items-center gap-6 mb-12 opacity-0 animate-in">
+                <div class="h-[1px] w-16 bg-gold/70"></div>
+                <span class="font-mono text-[10px] text-gold tracking-[0.4em] uppercase">Protocol 2026</span>
+                <div class="h-[1px] w-16 bg-gold/70"></div>
+            </div>
+
+            <h1 class="font-serif text-6xl md:text-8xl lg:text-[9rem] leading-[0.85] text-cream text-center mb-8 mix-blend-overlay gs-reveal">
+                Chocolate<br>Wellness Craft
+            </h1>
+            
+            <p class="font-serif text-2xl md:text-4xl italic text-gold/80 mb-16 opacity-0 animate-in delay-100">The Epoch of Intent.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-gold/90 border-t border-gold/20 pt-8 opacity-0 animate-in delay-200">
+                <p class="font-mono text-[9px] tracking-[0.2em] uppercase">Transform</p>
+                <p class="font-mono text-[9px] tracking-[0.2em] uppercase">Transcend</p>
+                <p class="font-mono text-[9px] tracking-[0.2em] uppercase">Taste</p>
+            </div>
+        </div>
+
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 font-mono text-[9px] text-cream/30 tracking-[0.5em] uppercase z-10 animate-pulse">
+            Scroll to Enter
         </div>
     </header>
 
-    <section class="py-24 px-4 md:px-12 bg-cocoa relative">
-        
-        <div class="flex justify-between items-end mb-16 border-b border-white/10 pb-6 max-w-[1400px] mx-auto">
-            <div>
-                <span class="font-mono text-gold/60 text-[10px] tracking-widest uppercase block mb-2">Regular Offerings — 4gs Each</span>
-                <h2 class="font-serif text-4xl text-cream">Chocolate Bars.</h2>
-            </div>
-            <div class="text-right hidden md:block">
-                <p class="font-mono text-[10px] text-cream/40 uppercase">Genetics May Vary</p>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1400px] mx-auto">
-
-            <article class="group relative bg-cocoaLight border border-white/5 hover:border-gold/30 transition-colors duration-500">
-                <div class="aspect-square overflow-hidden relative border-b border-white/5">
-                    <img src="https://images.unsplash.com/photo-1548691905-57c36cc8d935?q=80&w=1974&auto=format&fit=crop" 
-                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 img-zoom" 
-                         alt="Dark Chocolate">
-                    <div class="absolute top-4 right-4 font-mono text-[9px] bg-black/50 text-gold px-2 py-1 backdrop-blur">#01</div>
+    <section id="epoch" class="py-32 px-6 md:px-12 bg-cocoa relative border-t border-white/5">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-12">
+                <div class="flex items-center gap-4">
+                    <span class="font-mono text-[10px] text-gold tracking-[0.3em] uppercase gs-fade-up">01 — The Epoch</span>
                 </div>
-                <div class="p-8 flex flex-col h-[280px] justify-between">
-                    <div>
-                        <h3 class="font-serif text-2xl text-cream mb-3">Dark Decadence</h3>
-                        <p class="font-mono text-[10px] text-cream/60 uppercase leading-relaxed text-justify">
-                            Rich, velvety dark chocolate infused with premium psilocybin mushrooms for a bold, mystical experience.
-                        </p>
-                    </div>
-                    <div class="flex justify-between items-end border-t border-dashed border-white/10 pt-6">
-                        <span class="font-mono text-[9px] text-gold/50 uppercase">Regular Offering</span>
-                        <div class="text-3xl font-serif text-cream cursor-pointer">
-                            $<span class="price-trigger">60</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="group relative bg-cocoaLight border border-white/5 hover:border-gold/30 transition-colors duration-500">
-                <div class="aspect-square overflow-hidden relative border-b border-white/5">
-                    <img src="https://images.unsplash.com/photo-1599599810769-bcde5a823097?q=80&w=1932&auto=format&fit=crop" 
-                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 img-zoom" 
-                         alt="Hazelnut">
-                    <div class="absolute top-4 right-4 font-mono text-[9px] bg-black/50 text-gold px-2 py-1 backdrop-blur">#02</div>
-                </div>
-                <div class="p-8 flex flex-col h-[280px] justify-between">
-                    <div>
-                        <h3 class="font-serif text-2xl text-cream mb-3">Hazelnut Crisp</h3>
-                        <p class="font-mono text-[10px] text-cream/60 uppercase leading-relaxed text-justify">
-                            Harmony. A delightful combination of smooth hazelnut chocolate and a satisfying crunch to intrigue your taste buds.
-                        </p>
-                    </div>
-                    <div class="flex justify-between items-end border-t border-dashed border-white/10 pt-6">
-                        <span class="font-mono text-[9px] text-gold/50 uppercase">Regular Offering</span>
-                        <div class="text-3xl font-serif text-cream cursor-pointer">
-                            $<span class="price-trigger">60</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="group relative bg-cocoaLight border border-white/5 hover:border-gold/30 transition-colors duration-500">
-                <div class="aspect-square overflow-hidden relative border-b border-white/5">
-                    <img src="https://images.unsplash.com/photo-1620922883495-3453982e0436?q=80&w=1965&auto=format&fit=crop" 
-                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 img-zoom" 
-                         alt="Milk Chocolate">
-                    <div class="absolute top-4 right-4 font-mono text-[9px] bg-black/50 text-gold px-2 py-1 backdrop-blur">#03</div>
-                </div>
-                <div class="p-8 flex flex-col h-[280px] justify-between">
-                    <div>
-                        <h3 class="font-serif text-2xl text-cream mb-3">Milk Bliss</h3>
-                        <p class="font-mono text-[10px] text-cream/60 uppercase leading-relaxed text-justify">
-                            Creamy, dreamy milk chocolate that melts in your mouth, creating waves of euphoria.
-                        </p>
-                    </div>
-                    <div class="flex justify-between items-end border-t border-dashed border-white/10 pt-6">
-                        <span class="font-mono text-[9px] text-gold/50 uppercase">Regular Offering</span>
-                        <div class="text-3xl font-serif text-cream cursor-pointer">
-                            $<span class="price-trigger">60</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="group relative bg-cocoaLight border border-white/5 hover:border-gold/30 transition-colors duration-500">
-                <div class="aspect-square overflow-hidden relative border-b border-white/5">
-                    <img src="https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?q=80&w=2070&auto=format&fit=crop" 
-                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 img-zoom" 
-                         alt="Cookies">
-                    <div class="absolute top-4 right-4 font-mono text-[9px] bg-black/50 text-gold px-2 py-1 backdrop-blur">#04</div>
-                </div>
-                <div class="p-8 flex flex-col h-[280px] justify-between">
-                    <div>
-                        <h3 class="font-serif text-2xl text-cream mb-3">Cookies & Cream</h3>
-                        <p class="font-mono text-[10px] text-cream/60 uppercase leading-relaxed text-justify">
-                            Wonderland. Indulge in the creamy decadence of cookies and cream, a sweet escape with every bite.
-                        </p>
-                    </div>
-                    <div class="flex justify-between items-end border-t border-dashed border-white/10 pt-6">
-                        <span class="font-mono text-[9px] text-gold/50 uppercase">Regular Offering</span>
-                        <div class="text-3xl font-serif text-cream cursor-pointer">
-                            $<span class="price-trigger">60</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="group relative bg-cocoaLight border border-white/5 hover:border-gold/30 transition-colors duration-500">
-                <div class="aspect-square overflow-hidden relative border-b border-white/5">
-                    <img src="https://images.unsplash.com/photo-1596450523473-b3c9cb71276a?q=80&w=2072&auto=format&fit=crop" 
-                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 img-zoom" 
-                         alt="Coconut">
-                    <div class="absolute top-4 right-4 font-mono text-[9px] bg-black/50 text-gold px-2 py-1 backdrop-blur">#06</div>
-                </div>
-                <div class="p-8 flex flex-col h-[280px] justify-between">
-                    <div>
-                        <h3 class="font-serif text-2xl text-cream mb-3">Coconut Dream</h3>
-                        <p class="font-mono text-[10px] text-cream/60 uppercase leading-relaxed text-justify">
-                            Dreamscape. Tropical coconut goodness wrapped in luscious chocolate, transporting you to a sunny paradise.
-                        </p>
-                    </div>
-                    <div class="flex justify-between items-end border-t border-dashed border-white/10 pt-6">
-                        <span class="font-mono text-[9px] text-gold/50 uppercase">Regular Offering</span>
-                        <div class="text-3xl font-serif text-cream cursor-pointer">
-                            $<span class="price-trigger">60</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="group relative bg-cocoaLight/30 border border-white/5 flex flex-col justify-center items-center text-center p-8">
-                <div class="font-serif text-3xl text-gold/20 mb-4">Coming Soon</div>
-                <div class="space-y-4 font-mono text-xs uppercase text-cream/50 tracking-widest">
-                    <p>Mint Crisp</p>
-                    <div class="w-12 h-[1px] bg-gold/20 mx-auto"></div>
-                    <p>Reese's P.B.</p>
-                </div>
-            </article>
-
-        </div>
-
-        <div class="mt-32 max-w-[1400px] mx-auto">
-            <div class="flex items-center gap-4 mb-12">
-                <div class="h-[1px] w-12 bg-gold"></div>
-                <span class="font-mono text-gold text-[10px] tracking-[0.3em] uppercase">Premium Tier</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 
-                <div class="relative bg-[#1a2e25] border border-emerald-900/50 p-10 flex flex-col justify-between min-h-[400px] group overflow-hidden">
-                    <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-                    <div class="relative z-10">
-                         <h3 class="font-serif text-4xl text-emerald-100 mb-2">Vegan Dark.</h3>
-                         <p class="font-mono text-[9px] text-emerald-400 uppercase tracking-widest mb-6">Zero Sugar • Non GMO • Keto Friendly</p>
-                         <p class="font-mono text-[10px] text-emerald-100/60 uppercase leading-relaxed max-w-sm">
-                             Psychedelic pleasure, without the guilt. Handcrafted for purity.
-                         </p>
-                    </div>
-                    <div class="relative z-10 flex justify-between items-end border-t border-emerald-500/20 pt-8 mt-12">
-                        <span class="font-mono text-[9px] text-emerald-500 uppercase">Specialty</span>
-                        <div class="text-4xl font-serif text-emerald-100 cursor-pointer">
-                            $<span class="price-trigger">75</span>
-                        </div>
+                <h2 class="font-serif text-5xl md:text-7xl text-cream gs-reveal leading-none">
+                    Preserving <span class="text-gold italic">Heirloom</span><br>Provenance.
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-l border-gold/20 pl-8 gs-fade-up">
+                    <p class="font-mono text-xs text-cream/70 leading-loose tracking-wide text-justify uppercase">
+                        Our mandate oversees the technical evolution of Chocolate Wellness Craft. We are a strategic vanguard.
+                    </p>
+                    <p class="font-serif text-xl text-gold/80 italic leading-relaxed">
+                        "Delights made with care, intention, and a touch of cosmic wonder."
+                    </p>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 relative flex justify-center lg:justify-end gs-scale-img">
+                <div class="relative w-full aspect-[4/5] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?q=80&w=1974&auto=format&fit=crop" 
+                         alt="Abstract Chocolate Art" 
+                         class="w-full h-full object-cover grayscale contrast-125 opacity-60">
+                    
+                    <div class="absolute inset-0 border border-gold/20 m-4"></div>
+                    <div class="absolute bottom-8 left-8 bg-cocoa/90 backdrop-blur px-4 py-2 border border-gold/30">
+                         <span class="font-mono text-[9px] text-gold tracking-widest">REF: QYRLG007</span>
                     </div>
                 </div>
-
-                <div class="relative bg-[#2a1a1f] border border-pink-900/50 p-10 flex flex-col justify-between min-h-[400px] group overflow-hidden">
-                    <div class="absolute top-0 right-0 w-[300px] h-[300px] bg-pink-500/10 blur-[100px] rounded-full"></div>
-                    <div class="relative z-10">
-                         <h3 class="font-serif text-4xl text-pink-100 mb-2">ZENGUMI.</h3>
-                         <p class="font-serif italic text-pink-300/80 mb-6">"Let Your Mind Flow"</p>
-                         <p class="font-mono text-[10px] text-pink-100/60 uppercase leading-relaxed max-w-sm">
-                             Therapy Gummies. Enhance feelings of unconditional warmth, and oneness with others. Heal, Connect, Love.
-                         </p>
-                    </div>
-                    <div class="relative z-10 flex justify-between items-end border-t border-pink-500/20 pt-8 mt-12">
-                        <span class="font-mono text-[9px] text-pink-500 uppercase">Therapy Protocol</span>
-                        <div class="text-4xl font-serif text-pink-100 cursor-pointer">
-                            $<span class="price-trigger">100</span>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <footer class="bg-black py-12 text-center border-t border-white/5">
-        <p class="font-mono text-[9px] text-gold/30 uppercase tracking-[0.3em]">
-            @iiieyecollective • Instagram
-        </p>
+    <section id="catalog" class="py-32 bg-cocoaLight border-t border-gold/5 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-24 border-b border-gold/20 pb-6 gs-fade-up">
+                <div>
+                    <span class="font-mono text-gold text-[10px] tracking-[0.3em] uppercase block mb-2">02 — Offerings</span>
+                    <h2 class="font-serif text-5xl md:text-6xl text-cream">The Catalog.</h2>
+                </div>
+                <div class="text-right hidden md:block opacity-60">
+                    <p class="font-mono text-[9px] text-cream uppercase">Status: Active (7)</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/20 border border-gold/20">
+                <article class="bg-cocoa p-10 min-h-[400px] flex flex-col justify-between group relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div>
+                        <span class="font-mono text-[9px] text-gold/50 mb-4 block">#001</span>
+                        <h3 class="font-serif text-3xl text-gold mb-4 group-hover:translate-x-2 transition-transform duration-500">Dark Decadence</h3>
+                        <p class="font-mono text-[10px] text-cream/60 leading-relaxed uppercase max-w-[200px]">85% Cacao. Deep, bold and mystical flavor experience.</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-dashed border-gold/10">
+                        <span class="font-mono text-[9px] text-gold uppercase">Totem Bar</span>
+                        <span class="font-mono text-xs text-cream">$22</span>
+                    </div>
+                </article>
+
+                <article class="bg-cocoa p-10 min-h-[400px] flex flex-col justify-between group relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div>
+                        <span class="font-mono text-[9px] text-gold/50 mb-4 block">#002</span>
+                        <h3 class="font-serif text-3xl text-gold mb-4 group-hover:translate-x-2 transition-transform duration-500">Hazelnut Crisp</h3>
+                        <p class="font-mono text-[10px] text-cream/60 leading-relaxed uppercase max-w-[200px]">Sonic crunch. Organic hazelnut butter integration.</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-dashed border-gold/10">
+                        <span class="font-mono text-[9px] text-gold uppercase">Totem Bar</span>
+                        <span class="font-mono text-xs text-cream">$22</span>
+                    </div>
+                </article>
+
+                <article class="bg-cocoa p-10 min-h-[400px] flex flex-col justify-between group relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div>
+                        <span class="font-mono text-[9px] text-gold/50 mb-4 block">#003</span>
+                        <h3 class="font-serif text-3xl text-gold mb-4 group-hover:translate-x-2 transition-transform duration-500">Milk Bliss</h3>
+                        <p class="font-mono text-[10px] text-cream/60 leading-relaxed uppercase max-w-[200px]">The classic dream. Oat milk alternative base.</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-dashed border-gold/10">
+                        <span class="font-mono text-[9px] text-gold uppercase">Totem Bar</span>
+                        <span class="font-mono text-xs text-cream">$22</span>
+                    </div>
+                </article>
+
+                <article class="bg-[#152420] col-span-1 md:col-span-2 p-10 flex flex-col justify-center relative group overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1614357223783-1815dc3df42e?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-luminosity img-hover-scale" alt="Mint">
+                    <div class="relative z-10">
+                        <span class="font-mono text-[9px] text-emerald-400/70 uppercase mb-4 block">Seasonal Edition</span>
+                        <h3 class="font-serif text-4xl md:text-5xl text-cream mb-4">Midnight Mint.</h3>
+                        <p class="font-mono text-[10px] text-emerald-100/60 leading-relaxed uppercase max-w-sm">
+                            Cooling crystals embedded in 90% Noir Chocolate.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="bg-cream col-span-1 p-10 flex flex-col justify-center relative group overflow-hidden">
+                    <div class="relative z-10 text-cocoa">
+                        <span class="font-mono text-[9px] text-cocoa/50 uppercase mb-4 block">Therapy Protocol</span>
+                        <h3 class="font-serif text-4xl md:text-5xl mb-2">ZENGUMI</h3>
+                        <p class="font-serif italic text-lg opacity-80 mb-6">Let your mind flow.</p>
+                        <div class="w-full h-[1px] bg-cocoa/20 mb-4"></div>
+                        <span class="font-bold font-mono">$100 / SET</span>
+                    </div>
+                    <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-gold rounded-full blur-[80px] opacity-40 group-hover:opacity-60 transition-opacity"></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="archives" class="py-32 px-6 bg-cocoa overflow-hidden">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="flex justify-between items-start mb-24 border-l-2 border-gold pl-6 gs-fade-up">
+                <div>
+                    <span class="font-mono text-gold text-[10px] tracking-[0.3em] uppercase block mb-3">03 — Evidence</span>
+                    <h2 class="font-serif text-6xl md:text-7xl text-cream">The Archives.</h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="group cursor-pointer">
+                    <div class="aspect-[3/4] overflow-hidden mb-6 relative border border-white/5">
+                        <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?q=80&w=1872&auto=format&fit=crop" 
+                             alt="Dark Decadence" 
+                             class="w-full h-full object-cover img-hover-scale grayscale hover:grayscale-0 transition-all duration-700">
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-baseline border-b border-gold/20 pb-2">
+                            <h4 class="font-mono text-xs font-bold text-gold uppercase tracking-widest">Specimen // 01</h4>
+                            <span class="font-mono text-[9px] text-gold/40">[IMG-LOG]</span>
+                        </div>
+                        <p class="font-mono text-[9px] text-cream/50 uppercase leading-relaxed text-justify">
+                            Visual record of texture density. 85% Cacao structure analysis.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer md:mt-24">
+                    <div class="aspect-[3/4] overflow-hidden mb-6 relative border border-white/5">
+                        <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?q=80&w=1983&auto=format&fit=crop" 
+                             alt="Raw Ingredients" 
+                             class="w-full h-full object-cover img-hover-scale grayscale hover:grayscale-0 transition-all duration-700">
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-baseline border-b border-gold/20 pb-2">
+                            <h4 class="font-mono text-xs font-bold text-gold uppercase tracking-widest">Manual // Raw</h4>
+                            <span class="font-mono text-[9px] text-gold/40">[OPEN-SRC]</span>
+                        </div>
+                        <p class="font-mono text-[9px] text-cream/50 uppercase leading-relaxed text-justify">
+                            Himalayan Salt + Raw Organic Coconut Nectar.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="aspect-[3/4] overflow-hidden mb-6 relative border border-white/5">
+                        <img src="https://images.unsplash.com/photo-1621451520668-333e606a5a22?q=80&w=1964&auto=format&fit=crop" 
+                             alt="Zen Gumi" 
+                             class="w-full h-full object-cover img-hover-scale grayscale hover:grayscale-0 transition-all duration-700">
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-baseline border-b border-gold/20 pb-2">
+                            <h4 class="font-mono text-xs font-bold text-gold uppercase tracking-widest">Zen // Flow</h4>
+                            <span class="font-mono text-[9px] text-gold/40">[VISUAL-VERIF]</span>
+                        </div>
+                        <p class="font-mono text-[9px] text-cream/50 uppercase leading-relaxed text-justify">
+                            Calibrated specifically for emotional connectivity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="inquiries" class="bg-cocoaLight py-24 px-6 border-t border-gold/10 relative">
+        <div class="max-w-[1400px] mx-auto text-center">
+            <h2 class="font-serif text-[12vw] leading-none text-gold/10 select-none pointer-events-none absolute left-0 right-0 top-1/2 -translate-y-1/2 text-center">
+                III EYE
+            </h2>
+            
+            <div class="relative z-10 flex flex-col items-center">
+                <p class="font-mono text-xs text-gold uppercase tracking-[0.4em] mb-8">Join the Consortium</p>
+                <a href="mailto:hello@iiieye.co" class="font-serif text-4xl md:text-6xl text-cream hover:text-gold transition-colors duration-300">hello@iiieye.co</a>
+                
+                <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-12 text-left w-full max-w-4xl border-t border-white/5 pt-12">
+                    <div class="flex flex-col gap-4">
+                        <span class="font-mono text-[9px] text-gold/50 uppercase">Socials</span>
+                        <a href="#" class="font-mono text-xs text-cream hover:text-gold">Instagram</a>
+                        <a href="#" class="font-mono text-xs text-cream hover:text-gold">Twitter</a>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <span class="font-mono text-[9px] text-gold/50 uppercase">Legal</span>
+                        <a href="#" class="font-mono text-xs text-cream hover:text-gold">Privacy</a>
+                        <a href="#" class="font-mono text-xs text-cream hover:text-gold">Terms</a>
+                    </div>
+                    <div class="flex flex-col gap-4 col-span-2">
+                        <span class="font-mono text-[9px] text-gold/50 uppercase">Newsletter</span>
+                        <form class="flex border-b border-white/20 pb-2">
+                            <input type="email" placeholder="ENTER EMAIL" class="bg-transparent w-full font-mono text-xs text-cream focus:outline-none placeholder:text-white/20">
+                            <button class="text-gold font-mono text-xs hover:text-white transition-colors">SUBMIT</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <p class="mt-24 font-mono text-[8px] text-white/10 uppercase">© 2026 Chocolate Wellness Craft • All Rights Reserved</p>
+            </div>
+        </div>
     </footer>
 
     <script>
-        // Smooth Scroll
-        const lenis = new Lenis();
+        // 1. Initialize Lenis (Smooth Scroll)
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
         function raf(time) {
             lenis.raf(time);
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
 
-        // Simple Fade In
-        gsap.from("article", {
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.1,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: "section",
-                start: "top 80%"
-            }
+        // 2. GSAP Animations Setup
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Loading Screen
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            const tl = gsap.timeline();
+
+            tl.to(loader.querySelector('div'), {
+                opacity: 0,
+                duration: 0.5,
+                delay: 1
+            })
+            .to(loader, {
+                height: 0,
+                duration: 1,
+                ease: "power4.inOut"
+            })
+            .from(".animate-in", {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: "power3.out"
+            }, "-=0.5");
         });
+
+        // Parallax Images
+        document.querySelectorAll('img[data-speed]').forEach(img => {
+            gsap.to(img, {
+                y: "20%",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: img.parentElement,
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+        });
+
+        // Text Reveals
+        document.querySelectorAll('.gs-reveal').forEach(text => {
+            gsap.from(text, {
+                y: 100,
+                opacity: 0,
+                duration: 1.5,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: text,
+                    start: "top 85%"
+                }
+            });
+        });
+
+        // Fade Ups
+        document.querySelectorAll('.gs-fade-up').forEach(el => {
+            gsap.from(el, {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%"
+                }
+            });
+        });
+
+        // Navbar Logic
+        let lastScroll = 0;
+        const nav = document.getElementById('navbar');
+        
+        lenis.on('scroll', ({ scroll }) => {
+            if (scroll > lastScroll && scroll > 100) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            lastScroll = scroll;
+        });
+
     </script>
 </body>
 </html>
