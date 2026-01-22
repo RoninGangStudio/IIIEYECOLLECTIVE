@@ -1,29 +1,35 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>III EYE COLLECTIVE | Lifestyle & Wellness</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>III EYE COLLECTIVE | Chocolate Wellness Craft</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        cocoa: '#1a0f0d',
-                        lightCocoa: '#3c2218',
-                        cream: '#f3e5ab',
-                        gold: '#C5A059'
+                        cocoa: '#1a0f0d',       /* Fondo Principal */
+                        deepBrown: '#2a1a15',   /* Variación para tarjetas */
+                        cream: '#f3e5ab',       /* Texto claro y bloques */
+                        gold: '#C5A059',        /* Textos dorados */
+                        goldDim: 'rgba(197, 160, 89, 0.2)',
                     },
                     fontFamily: {
                         serif: ['"Bodoni Moda"', 'serif'],
                         sans: ['"Inter"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    backgroundImage: {
+                        /* Fondo de chocolate del Hero */
+                        'chocolate-hero': "linear-gradient(rgba(26, 15, 13, 0.6), rgba(26, 15, 13, 0.8)), url('https://images.unsplash.com/photo-1623227233261-26c93433367b?q=80&w=2070&auto=format&fit=crop')",
                     }
                 }
             }
@@ -32,283 +38,396 @@
 
     <style>
         body {
-            font-family: 'Inter', sans-serif;
             background-color: #1a0f0d;
             color: #f3e5ab;
         }
-        h1, h2, h3, h4, .font-serif {
-            font-family: 'Bodoni Moda', serif;
+        /* Bordes finos estilo "Technical" */
+        .tech-border {
+            border: 1px solid rgba(197, 160, 89, 0.3);
         }
-        html {
-            scroll-behavior: smooth;
+        .tech-border-top {
+            border-top: 1px solid rgba(197, 160, 89, 0.3);
         }
-        /* Tu fondo degradado original */
-        .liquid-chocolate-bg {
-            background: linear-gradient(135deg, #1a0f0d 0%, #3c2218 50%, #1a0f0d 100%);
-            background-attachment: fixed;
-        }
-        /* Scrollbar de lujo */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a0f0d;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #3c2218;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4d2d1f;
-        }
-        
-        /* Utilidades extra */
-        .glass-panel {
-            background: rgba(26, 15, 13, 0.7);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(243, 229, 171, 0.1);
-        }
-        .fade-in {
-            animation: fadeIn 1.2s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1a0f0d; }
+        ::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 3px; }
     </style>
 </head>
-<body class="liquid-chocolate-bg min-h-screen flex flex-col">
+<body class="antialiased">
 
-    <nav class="fixed w-full z-50 glass-panel transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-serif tracking-tighter text-cream hover:text-gold transition-colors cursor-pointer">
-                III EYE <span class="text-xs font-sans tracking-widest ml-1 uppercase opacity-70">Collective</span>
+    <nav class="fixed w-full z-50 py-6 mix-blend-difference text-cream transition-all duration-300 bg-cocoa/80 backdrop-blur-sm border-b border-white/5">
+        <div class="max-w-[1400px] mx-auto px-8 flex justify-between items-center">
+            <div class="font-serif text-xl tracking-[0.15em] uppercase font-bold text-gold">
+                III EYE COLLECTIVE
             </div>
-            
-            <div class="hidden md:flex space-x-8 text-sm font-light tracking-widest uppercase">
-                <a href="#about" class="hover:text-gold transition-colors">The Mandate</a>
-                <a href="#catalog" class="hover:text-gold transition-colors">Catalog</a>
-                <a href="#gallery" class="hover:text-gold transition-colors">Archives</a>
-                <a href="#contact" class="hover:text-gold transition-colors">Inquiries</a>
-            </div>
-
-            <button class="md:hidden text-cream" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
-        
-        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-cocoa border-b border-lightCocoa py-4 md:hidden">
-            <div class="flex flex-col items-center space-y-4 text-sm tracking-widest uppercase">
-                <a href="#about" class="hover:text-gold">The Mandate</a>
-                <a href="#catalog" class="hover:text-gold">Catalog</a>
-                <a href="#gallery" class="hover:text-gold">Archives</a>
-                <a href="#contact" class="hover:text-gold">Inquiries</a>
+            <div class="hidden md:flex space-x-12 font-mono text-[10px] tracking-[0.2em] uppercase text-gold/80">
+                <a href="#epoch" class="hover:text-cream transition-colors">The Epoch</a>
+                <a href="#catalog" class="hover:text-cream transition-colors">The Catalog</a>
+                <a href="#archives" class="hover:text-cream transition-colors">The Archives</a>
+                <a href="#inquiries" class="hover:text-cream transition-colors">Inquiries</a>
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow">
+    <header class="relative h-screen min-h-[800px] flex flex-col items-center justify-center bg-chocolate-hero bg-cover bg-center bg-no-repeat bg-fixed px-6">
         
-        <section class="relative h-screen flex items-center justify-center overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=2000" alt="Architecture" class="w-full h-full object-cover opacity-40 mix-blend-overlay">
-                <div class="absolute inset-0 bg-gradient-to-b from-cocoa/80 via-transparent to-cocoa"></div>
-            </div>
+        <div class="flex items-center gap-4 mb-8 opacity-0 animate-[fadeIn_1s_ease-out_forwards]">
+            <div class="h-[1px] w-12 bg-gold/50"></div>
+            <span class="font-mono text-[10px] text-gold tracking-[0.3em] uppercase">Consortium Protocol 01</span>
+            <div class="h-[1px] w-12 bg-gold/50"></div>
+        </div>
 
-            <div class="relative z-10 text-center px-4 max-w-4xl fade-in">
-                <p class="text-gold text-xs tracking-[0.4em] uppercase mb-6">Lifestyle & Wellness Consortium</p>
-                <h1 class="text-5xl md:text-7xl lg:text-8xl text-cream mb-8 leading-tight">
-                    III EYE <br/> <span class="italic font-light opacity-90">COLLECTIVE</span>
-                </h1>
-                <p class="text-cream/80 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
-                    Un consorcio técnico de bienestar dedicado a la preservación de experiencias sensoriales. 
-                    <br><span class="text-sm opacity-60 mt-4 block">No comercial. Solo educacional.</span>
-                </p>
-                
-                <div class="mt-12">
-                    <a href="#about" class="border border-cream/30 text-cream px-8 py-3 text-xs uppercase tracking-widest hover:bg-cream hover:text-cocoa transition-all duration-500">
-                        Explore The Mandate
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                <div class="space-y-8">
-                    <span class="text-gold text-xs tracking-widest uppercase border-b border-gold/30 pb-2">The Mandate</span>
-                    <h2 class="text-4xl md:text-5xl text-cream">Arquitectura del Bienestar</h2>
-                    <p class="text-cream/70 leading-relaxed font-light text-justify">
-                        III EYE COLLECTIVE opera bajo un concepto de "Consorcio Técnico". Nuestra filosofía no es transaccional, sino exhibicionista e informativa. Utilizamos una estética de lujo minimalista para desestigmatizar y educar sobre compuestos botánicos y sintéticos, siempre dentro de un marco de cumplimiento legal estricto.
-                    </p>
-                    <div class="grid grid-cols-2 gap-8 pt-4">
-                        <div>
-                            <h4 class="text-xl mb-2">Misión</h4>
-                            <p class="text-sm text-cream/60">Educación sensorial y preservación de archivos botánicos.</p>
-                        </div>
-                        <div>
-                            <h4 class="text-xl mb-2">Visión</h4>
-                            <p class="text-sm text-cream/60">Elevar el estándar estético de la cultura del bienestar.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative">
-                    <div class="absolute inset-0 border border-gold/20 transform translate-x-4 translate-y-4"></div>
-                    <img src="https://i.ibb.co/qYRLG007/image.png" alt="The Golden Rabbit" class="relative z-10 w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl">
-                </div>
-            </div>
-        </section>
-
-        <section id="catalog" class="py-24 bg-black/20">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <span class="text-gold text-xs tracking-widest uppercase">The Inventory</span>
-                    <h2 class="text-4xl mt-3 mb-6">Specimen Catalog</h2>
-                    <p class="text-cream/50 text-sm max-w-lg mx-auto">Registro de unidades conceptuales. No disponibles para venta directa.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="group bg-lightCocoa/20 p-8 border border-white/5 hover:border-gold/30 transition-all duration-500">
-                        <div class="aspect-square mb-6 overflow-hidden bg-black/40 relative">
-                            <img src="https://i.ibb.co/tSvrc7m/image.png" alt="Dark Decadence" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-700">
-                        </div>
-                        <h3 class="text-2xl mb-2">Dark Decadence</h3>
-                        <p class="text-sm text-cream/60 font-light mb-4">Cacao 85% con notas terrosas profundas. Un perfil de sabor diseñado para la introspección.</p>
-                        <span class="text-[10px] text-gold uppercase tracking-widest border border-gold/30 px-2 py-1">Log Only</span>
-                    </div>
-
-                    <div class="group bg-lightCocoa/20 p-8 border border-white/5 hover:border-gold/30 transition-all duration-500">
-                        <div class="aspect-square mb-6 overflow-hidden bg-black/40 relative flex items-center justify-center">
-                            <img src="https://i.ibb.co/tSvrc7m/image.png" alt="Cookies Type" class="w-full h-full object-cover opacity-60 sepia group-hover:opacity-90 group-hover:scale-105 transition-transform duration-700">
-                        </div>
-                        <h3 class="text-2xl mb-2">Cookies & Cream</h3>
-                        <p class="text-sm text-cream/60 font-light mb-4">Texturas contrastantes. Suavidad láctea interceptada por crujidos minerales sintéticos.</p>
-                        <span class="text-[10px] text-gold uppercase tracking-widest border border-gold/30 px-2 py-1">Log Only</span>
-                    </div>
-
-                    <div class="group bg-lightCocoa/20 p-8 border border-white/5 hover:border-gold/30 transition-all duration-500">
-                        <div class="aspect-square mb-6 overflow-hidden bg-black/40 relative">
-                            <img src="https://i.ibb.co/NndvybP3/image.png" alt="Zen Gumi" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-700">
-                        </div>
-                        <h3 class="text-2xl mb-2">Zen Gumi</h3>
-                        <p class="text-sm text-cream/60 font-light mb-4">Dosificación precisa en formato blando. Absorción rápida y diseño ergonómico.</p>
-                        <span class="text-[10px] text-gold uppercase tracking-widest border border-gold/30 px-2 py-1">Log Only</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="gallery" class="py-24 px-6 max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-cream/10 pb-6">
-                <div>
-                    <span class="text-gold text-xs tracking-widest uppercase">Visual Evidence</span>
-                    <h2 class="text-4xl mt-2">The Archives</h2>
-                </div>
-                <div class="mt-4 md:mt-0 text-right">
-                    <p class="text-xs text-cream/50">High Definition Logs</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="md:col-span-2 h-[500px] overflow-hidden relative group">
-                    <img src="https://i.ibb.co/fYZYjXHg/image.png" alt="Archive 1" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
-                    <div class="absolute bottom-4 left-4 bg-cocoa/90 px-4 py-2">
-                        <p class="font-serif italic">Registro 01: Packaging</p>
-                    </div>
-                </div>
-                <div class="h-[400px] overflow-hidden relative group">
-                    <img src="https://i.ibb.co/ShKpnF4/image.png" alt="Archive 2" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
-                    <div class="absolute bottom-4 left-4 bg-cocoa/90 px-4 py-2">
-                        <p class="font-serif italic">Registro 02: Receta Técnica</p>
-                    </div>
-                </div>
-                <div class="h-[400px] overflow-hidden relative group">
-                    <img src="https://i.ibb.co/NndvybP3/image.png" alt="Archive 3" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
-                    <div class="absolute bottom-4 left-4 bg-cocoa/90 px-4 py-2">
-                        <p class="font-serif italic">Registro 03: Dossier</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" class="py-24 bg-lightCocoa/10">
-            <div class="max-w-3xl mx-auto px-6">
-                <h2 class="text-3xl text-center mb-12 font-serif">Protocolo & Preguntas</h2>
-                
-                <div class="space-y-4">
-                    <details class="group bg-cocoa border border-cream/5 p-6 cursor-pointer">
-                        <summary class="flex justify-between items-center list-none text-lg font-medium text-cream">
-                            <span>¿Es posible realizar compras directas?</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <p class="text-cream/60 mt-4 font-light text-sm leading-relaxed">
-                            Negativo. III EYE COLLECTIVE opera como una exhibición educativa. No se procesan transacciones financieras en este portal digital.
-                        </p>
-                    </details>
-
-                    <details class="group bg-cocoa border border-cream/5 p-6 cursor-pointer">
-                        <summary class="flex justify-between items-center list-none text-lg font-medium text-cream">
-                            <span>¿Cuál es el origen de los componentes?</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <p class="text-cream/60 mt-4 font-light text-sm leading-relaxed">
-                            Todos los componentes son seleccionados bajo estándares de calidad técnica y ética, priorizando el bienestar sobre el volumen comercial.
-                        </p>
-                    </details>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="py-24 px-6 border-t border-cream/5">
-            <div class="max-w-xl mx-auto text-center">
-                <span class="text-gold text-xs tracking-widest uppercase">Inquiries</span>
-                <h2 class="text-4xl mb-8 mt-2">Contacto</h2>
-                <form class="space-y-4 text-left" onsubmit="event.preventDefault(); alert('Mensaje recibido. Gracias.');">
-                    <div>
-                        <input type="text" placeholder="Nombre / Identificador" class="w-full bg-lightCocoa/30 border border-cream/10 p-4 text-cream placeholder-cream/30 focus:outline-none focus:border-gold transition-colors">
-                    </div>
-                    <div>
-                        <input type="email" placeholder="Correo Electrónico" class="w-full bg-lightCocoa/30 border border-cream/10 p-4 text-cream placeholder-cream/30 focus:outline-none focus:border-gold transition-colors">
-                    </div>
-                    <div>
-                        <textarea rows="4" placeholder="Mensaje" class="w-full bg-lightCocoa/30 border border-cream/10 p-4 text-cream placeholder-cream/30 focus:outline-none focus:border-gold transition-colors"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-cream text-cocoa font-bold uppercase tracking-widest py-4 hover:bg-gold transition-colors">
-                        Enviar Consulta
-                    </button>
-                </form>
-            </div>
-        </section>
-
-        <section class="bg-black/40 py-8 px-6">
-            <div class="max-w-5xl mx-auto border-l-2 border-red-900/50 pl-6">
-                <h5 class="text-xs text-red-400 font-bold uppercase mb-2">Aviso Legal</h5>
-                <p class="text-xs text-cream/40 leading-relaxed max-w-3xl">
-                    El contenido de este sitio tiene fines puramente informativos, educativos y artísticos. III EYE COLLECTIVE no promueve el uso de sustancias ilegales ni realiza venta directa de productos regulados a través de esta plataforma. Todas las imágenes son representaciones artísticas de archivo. El acceso a este sitio implica la aceptación de nuestros términos de uso.
-                </p>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-cocoa pt-16 pb-8 border-t border-cream/5">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-6 md:mb-0 text-center md:text-left">
-                <span class="font-serif text-xl block">III EYE COLLECTIVE</span>
-                <span class="text-[10px] text-cream/40 uppercase tracking-widest">© 2026 Todos los derechos reservados</span>
-            </div>
+        <div class="text-center max-w-5xl opacity-0 animate-[fadeIn_1s_ease-out_0.5s_forwards]">
+            <h1 class="font-serif text-6xl md:text-8xl leading-[1.1] text-cream mb-6">
+                Chocolate Wellness Craft.<br>
+                <span class="italic text-gold">The Epoch of Intent.</span>
+            </h1>
             
-            <div class="flex space-x-6">
-                <a href="https://www.instagram.com/iiieyecollective/" target="_blank" class="text-cream/60 hover:text-gold transition-colors text-xs tracking-widest uppercase">
-                    Instagram
+            <div class="flex flex-col items-center gap-2 mb-12">
+                <p class="font-mono text-[10px] md:text-xs text-cream/70 tracking-[0.25em] uppercase">
+                    Transform your taste experience with
+                </p>
+                <p class="font-mono text-[10px] md:text-xs text-cream/70 tracking-[0.25em] uppercase">
+                    handcrafted delights made with care, intention, and a touch of wonder.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <a href="#catalog" class="bg-cream text-cocoa font-mono text-xs font-bold uppercase py-4 px-10 tracking-[0.2em] hover:bg-gold transition-colors">
+                    Consult The Dossier
+                </a>
+                <a href="#epoch" class="bg-transparent border border-white/20 text-cream font-mono text-xs font-bold uppercase py-4 px-10 tracking-[0.2em] hover:border-gold hover:text-gold transition-colors">
+                    The Epoch
                 </a>
             </div>
+        </div>
+
+        <div class="absolute bottom-8 font-mono text-[10px] text-gold/40 tracking-[0.5em]">
+            III EYE COLLECTIVE
+        </div>
+    </header>
+
+    <section id="epoch" class="py-32 px-6 bg-cocoa relative border-t border-white/5">
+        <div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            
+            <div class="space-y-8">
+                <div class="flex items-center gap-4">
+                    <div class="h-[1px] w-8 bg-gold"></div>
+                    <span class="font-mono text-[10px] text-gold tracking-[0.3em] uppercase">The Epoch</span>
+                </div>
+                
+                <h2 class="font-serif text-6xl text-cream">The Epoch.</h2>
+                <p class="font-mono text-gold text-xs tracking-[0.3em] uppercase mb-8">• Chocolate Wellness Craft</p>
+
+                <blockquote class="border-l-2 border-gold/30 pl-6 py-2 my-8">
+                    <p class="font-serif text-2xl italic text-cream/90 leading-relaxed">
+                        "Handcrafted delights made with care, intention, and a touch of wonder."
+                    </p>
+                </blockquote>
+
+                <p class="font-mono text-xs text-cream/60 leading-loose tracking-wide max-w-md text-justify">
+                    OUR MANDATE OVERSEES THE TECHNICAL EVOLUTION OF CHOCOLATE WELLNESS CRAFT. WE ARE A STRATEGIC VANGUARD PRESERVING HEIRLOOM PROVENANCE THROUGH RIGOROUS STANDARDS.
+                </p>
+            </div>
+
+            <div class="relative flex justify-center lg:justify-end">
+                <div class="relative w-full max-w-md aspect-square bg-black border border-white/5 p-12 flex items-center justify-center group">
+                    <img src="https://i.ibb.co/qYRLG007/image.png" alt="The Golden Rabbit" class="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(197,160,89,0.3)] group-hover:scale-105 transition-transform duration-700">
+                    
+                    <div class="absolute bottom-4 left-0 w-full text-center border-t border-white/10 pt-4 mx-4">
+                        <span class="font-mono text-[9px] text-gold tracking-widest">ARCHIVE REF: QYRLG007</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-16">
+            <h3 class="font-serif text-3xl italic text-gold tracking-[0.3em] opacity-80">B R E A K &nbsp; T H R O U G H</h3>
+        </div>
+    </section>
+
+    <section id="catalog" class="py-32 px-6 bg-[#150c0a] border-t border-gold/10">
+        <div class="max-w-[1400px] mx-auto">
+            
+            <div class="flex justify-between items-end mb-20 border-b border-gold/20 pb-6">
+                <div>
+                    <span class="font-mono text-gold text-[10px] tracking-[0.3em] uppercase block mb-2">Archival Reference</span>
+                    <h2 class="font-serif text-5xl text-cream">The Catalog.</h2>
+                </div>
+                <div class="text-right hidden md:block">
+                    <p class="font-mono text-[9px] text-gold uppercase">Active Products (7)</p>
+                    <p class="font-mono text-[9px] text-cream/40 uppercase">International Dossier: Handcrafted</p>
+                </div>
+            </div>
+
+            <div class="mb-8 font-mono text-[10px] text-gold tracking-widest italic">I. REGULAR CHOCOLATE OFFERINGS</div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-gold/20">
+                
+                <div class="border-r border-b border-gold/20 p-8 min-h-[350px] flex flex-col justify-between group hover:bg-white/5 transition-colors">
+                    <div>
+                        <span class="font-mono text-[9px] text-gold/50 mb-4 block">#001</span>
+                        <h3 class="font-serif text-2xl text-gold mb-4">Dark Decadence</h3>
+                        <p class="font-mono text-[10px] text-cream/60 leading-relaxed uppercase">
+                            Rich, velvety dark chocolate infused with a deep, bold and mystical flavor experience. Crafted for those who appreciate intensity and depth in every bite.
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-dashed border-gold/20">
+                        <span class="font-mono text-[9px] text-gold uppercase">As Totem Bar</span>
+                        <span class="font-mono text-xs text-cream">$22</span>
+                    </div>
+                </div>
+
+                <div class="border-r border-b border-gold/20 p-8 min-h-[350px] flex flex-col justify-between group hover:bg-white/5 transition-colors">
+                    <div>
+                        <span class="font-mono text-[9px] text-gold/50 mb-4 block">#002</span>
+                        <h3 class="font-serif text-2xl text-gold mb-4">Hazelnut Crisp Harmony</h3>
+                        <p class="font-mono text-[10px] text-cream/60 leading-relaxed uppercase">
+                            Smooth hazelnut chocolate paired with a satisfying crunch. A perfectly balanced blend of creaminess and texture designed to intrigue your senses.
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-dashed border-gold/20">
+                        <span class="font-mono text-[9px] text-gold uppercase">As Totem Bar</span>
+                        <span class="font-mono text-xs text-cream">$22</span>
+                    </div>
+                </div>
+
+                <div class="border-r border-b border-gold/20 p-8 min-h-[350px] flex flex-col justify-between group hover:bg-white/5 transition-colors">
+                    <div>
+                        <span class="font-mono text-[9px] text-gold/50 mb-4 block">#003</span>
+                        <h3 class="font-serif text-2xl text-gold mb-4">Milk Bliss</h3>
+                        <p class="font-mono text-[10px] text-cream/60 leading-relaxed uppercase">
+                            Creamy, dreamy milk chocolate that melts effortlessly in your mouth, delivering smooth waves of sweetness and comfort.
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-dashed border-gold/20">
+                        <span class="font-mono text-[9px] text-gold uppercase">As Totem Bar</span>
+                        <span class="font-mono text-xs text-cream">$22</span>
+                    </div>
+                </div>
+
+                <div class="border-r border-b border-gold/20 p-8 min-h-[350px] flex flex-col justify-between group hover:bg-white/5 transition-colors">
+                    <div>
+                        <span class="font-mono text-[9px] text-gold/50 mb-4 block">#004</span>
+                        <h3 class="font-serif text-2xl text-gold mb-4">Cookies & Cream Wonderland</h3>
+                        <p class="font-mono text-[10px] text-cream/60 leading-relaxed uppercase">
+                            A nostalgic classic reimagined. Creamy chocolate infused with cookie crumbles for a decadent, playful escape in every bite.
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-dashed border-gold/20">
+                        <span class="font-mono text-[9px] text-gold uppercase">As Totem Bar</span>
+                        <span class="font-mono text-xs text-cream">$22</span>
+                    </div>
+                </div>
+
+                <div class="border-r border-b border-gold/20 p-8 min-h-[350px] flex flex-col justify-between group hover:bg-white/5 transition-colors">
+                    <div>
+                        <span class="font-mono text-[9px] text-gold/50 mb-4 block">#005</span>
+                        <h3 class="font-serif text-2xl text-gold mb-4">Coconut Dreamscape</h3>
+                        <p class="font-mono text-[10px] text-cream/60 leading-relaxed uppercase">
+                            Tropical coconut goodness wrapped in luscious chocolate, transporting your senses to a warm, sunny paradise.
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center mt-8 pt-4 border-t border-dashed border-gold/20">
+                        <span class="font-mono text-[9px] text-gold uppercase">As Totem Bar</span>
+                        <span class="font-mono text-xs text-cream">$22</span>
+                    </div>
+                </div>
+
+                <div class="border-r border-b border-gold/20 relative overflow-hidden group">
+                     <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&q=80" class="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity grayscale" alt="Texture">
+                     <div class="absolute bottom-4 right-4 font-mono text-[9px] text-gold">VISUAL_SPECIMEN_LOG_502</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20">
+                
+                <div class="bg-[#0f0806] border border-gold/20 p-10 flex flex-col justify-center">
+                    <span class="font-mono text-[9px] text-gold/50 uppercase mb-4">Ft. Sugar Free Sets</span>
+                    <h3 class="font-serif text-4xl text-cream mb-4">Conscious<br>Indulgence.</h3>
+                    <p class="font-mono text-[10px] text-gold leading-relaxed uppercase max-w-sm mb-8">
+                        Zero Sugar • Non-GMO • Gluten-Free • Keto-Friendly. Crafted for a clean ingredients profile and a smooth, satisfying finish without compromise.
+                    </p>
+                    <div class="flex items-center gap-4 border-t border-white/10 pt-4">
+                        <span class="font-serif text-xl text-cream">$75</span>
+                        <div class="h-[1px] w-8 bg-gold/50"></div>
+                        <span class="font-mono text-[9px] text-gold/50 uppercase">Area Special</span>
+                    </div>
+                </div>
+
+                <div class="bg-[#f3e5ab] p-10 flex flex-col justify-center text-cocoa">
+                    <span class="font-mono text-[9px] text-cocoa/50 uppercase mb-4">VII. Gummies Collection</span>
+                    <h3 class="font-serif text-4xl text-cocoa mb-2 uppercase tracking-wide">ZENGUMI</h3>
+                    <p class="font-mono text-[10px] text-cocoa/70 italic mb-6">Let your mind flow</p>
+                    <p class="font-serif text-sm text-cocoa/80 leading-relaxed mb-8">
+                        MDMA Microdose Therapy Gummies designed to enhance feelings of emotional openness, warmth, connection, and inner flow. Created to support healing, bonding, and mindful experiences.
+                    </p>
+                    <div class="flex items-center justify-between border-t border-cocoa/20 pt-4">
+                        <span class="font-serif text-2xl font-bold">$100</span>
+                        <span class="font-mono text-[9px] uppercase tracking-widest">Therapy Protocol</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="archives" class="py-32 px-6 bg-cocoa">
+        <div class="max-w-[1400px] mx-auto">
+             <div class="flex justify-between items-start mb-16 border-l-2 border-gold pl-6">
+                <div>
+                    <span class="font-mono text-gold text-[10px] tracking-[0.3em] uppercase block mb-2">Empirical Evidence</span>
+                    <h2 class="font-serif text-6xl text-cream">The Archives.</h2>
+                </div>
+                <div class="hidden md:block max-w-xs text-right">
+                    <p class="font-mono text-[9px] text-gold/60 leading-relaxed uppercase">
+                        Visual logs recorded with high technical clarity. Pure spectral filters. Full color fidelity.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="group">
+                    <div class="aspect-[4/5] bg-black border border-gold/10 overflow-hidden relative mb-4">
+                         <img src="https://i.ibb.co/fYZYjXHg/image.png" alt="Dark Decadence Box" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex justify-between items-baseline border-b border-gold/20 pb-2">
+                        <h4 class="font-mono text-xs text-gold uppercase font-bold">Specimen // Dark Decadence</h4>
+                        <span class="font-mono text-[9px] text-cream/40">[IMG-01]</span>
+                    </div>
+                    <p class="mt-2 font-mono text-[9px] text-cream/50 uppercase leading-relaxed">
+                        Archival Log // Presentation: Complete visual record of Specimen 01. Showcasing the synergy between our 85% Cacao masterwork and its signature tactile packaging.
+                    </p>
+                </div>
+
+                <div class="group">
+                    <div class="aspect-[4/5] bg-black border border-gold/10 overflow-hidden relative mb-4">
+                         <img src="https://i.ibb.co/ShKpnF4/image.png" alt="Handwritten Recipe" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex justify-between items-baseline border-b border-gold/20 pb-2">
+                        <h4 class="font-mono text-xs text-gold uppercase font-bold">Recipe // Vegan Botanical Purity</h4>
+                        <span class="font-mono text-[9px] text-cream/40">[MANUAL-LOG]</span>
+                    </div>
+                    <p class="mt-2 font-mono text-[9px] text-cream/50 uppercase leading-relaxed">
+                        Composition Data: 75% Heirloom Cacao + Raw Organic Coconut Nectar + Himalayan Rock Salt. A refined plant-based formula engineered for metabolic harmony.
+                    </p>
+                </div>
+
+                <div class="group">
+                    <div class="aspect-[4/5] bg-black border border-gold/10 overflow-hidden relative mb-4">
+                         <img src="https://i.ibb.co/NndvybP3/image.png" alt="Zen Gumi Pouch" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex justify-between items-baseline border-b border-gold/20 pb-2">
+                        <h4 class="font-mono text-xs text-gold uppercase font-bold">Dossier // ZenGumi Protocol</h4>
+                        <span class="font-mono text-[9px] text-cream/40">[VISUAL-VERIF]</span>
+                    </div>
+                    <p class="mt-2 font-mono text-[9px] text-cream/50 uppercase leading-relaxed">
+                        Observational Record: Zen Buddha Specimen. Calibrated specifically for emotional connectivity and meditative depth. Designed for the III Eye Experience.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="inquiries" class="py-32 px-6 bg-[#1a0f0d] border-t border-gold/10">
+        <div class="max-w-3xl mx-auto">
+            
+            <div class="text-center mb-16">
+                <span class="font-mono text-[10px] text-gold tracking-[0.3em] uppercase">Inquiries</span>
+                <h2 class="font-serif text-5xl text-cream mt-2">Consortium Clarity.</h2>
+            </div>
+
+            <div class="space-y-4 mb-24">
+                <details class="group border border-gold/20 bg-white/5 open:bg-white/10 transition-colors">
+                    <summary class="flex justify-between items-center p-6 cursor-pointer list-none text-cream font-serif text-lg">
+                        <span>What defines the Collective's technical criteria?</span>
+                        <span class="text-gold font-mono text-xl group-open:rotate-45 transition-transform">+</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-cream/60 font-mono text-xs leading-relaxed uppercase">
+                        We adhere to a strict protocol of organic sourcing, heirloom cacao preservation, and zero-additive formulations. Every batch is logged and verified.
+                    </div>
+                </details>
+                <details class="group border border-gold/20 bg-white/5 open:bg-white/10 transition-colors">
+                    <summary class="flex justify-between items-center p-6 cursor-pointer list-none text-cream font-serif text-lg">
+                        <span>How is provenance verified within the Protocol?</span>
+                        <span class="text-gold font-mono text-xl group-open:rotate-45 transition-transform">+</span>
+                    </summary>
+                </details>
+                <details class="group border border-gold/20 bg-white/5 open:bg-white/10 transition-colors">
+                    <summary class="flex justify-between items-center p-6 cursor-pointer list-none text-cream font-serif text-lg">
+                        <span>Is the Consortium a commercial entity?</span>
+                        <span class="text-gold font-mono text-xl group-open:rotate-45 transition-transform">+</span>
+                    </summary>
+                </details>
+            </div>
+
+            <div class="text-center mb-12">
+                <span class="font-mono text-[10px] text-gold tracking-[0.2em] uppercase">Dialogue</span>
+                <h3 class="font-serif text-4xl text-cream mt-2 mb-4">Inquire With Us</h3>
+                <p class="font-mono text-[10px] text-cream/50 uppercase max-w-md mx-auto">
+                    We welcome conversations that explore the depth of our artisanal philosophy. Reach out for brand collaborations or general inquiries.
+                </p>
+            </div>
+
+            <form class="space-y-6 max-w-2xl mx-auto" onsubmit="event.preventDefault(); alert('Transmission Received.');">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2 text-left">
+                        <label class="font-mono text-[9px] text-gold uppercase">Name</label>
+                        <input type="text" placeholder="Full Name" class="w-full bg-transparent border border-gold/30 p-4 text-cream font-mono text-xs focus:outline-none focus:border-gold placeholder-white/20">
+                    </div>
+                    <div class="space-y-2 text-left">
+                        <label class="font-mono text-[9px] text-gold uppercase">Email</label>
+                        <input type="email" placeholder="Email Address" class="w-full bg-transparent border border-gold/30 p-4 text-cream font-mono text-xs focus:outline-none focus:border-gold placeholder-white/20">
+                    </div>
+                </div>
+                <div class="space-y-2 text-left">
+                    <label class="font-mono text-[9px] text-gold uppercase">Message</label>
+                    <textarea rows="4" placeholder="Your thoughts..." class="w-full bg-transparent border border-gold/30 p-4 text-cream font-mono text-xs focus:outline-none focus:border-gold placeholder-white/20"></textarea>
+                </div>
+                <div class="text-center pt-4">
+                    <button class="bg-gold text-cocoa font-mono text-[10px] font-bold uppercase py-4 px-12 tracking-widest hover:bg-cream transition-colors">
+                        Send Message
+                    </button>
+                    <p class="mt-4 font-mono text-[8px] text-cream/30 uppercase">Informational Inquiries Only. Zero Commercial Transactions.</p>
+                </div>
+            </form>
+
+        </div>
+    </section>
+
+    <footer class="bg-black py-16 px-6 border-t border-white/5">
+        <div class="max-w-[1400px] mx-auto flex flex-col items-center">
+            
+            <div class="border border-white/10 p-6 max-w-2xl text-center mb-16 bg-white/[0.02]">
+                <h5 class="font-serif text-cream text-sm mb-2">LEGAL DISCLAIMER</h5>
+                <p class="font-mono text-[9px] text-cream/40 leading-relaxed uppercase">
+                    This website is for informational and educational purposes only. No products are sold, shipped, or distributed through this site. Any actions taken by third parties are their sole responsibility. Visitors are responsible for complying with all local, state, and federal laws and regulations.
+                </p>
+            </div>
+
+            <div class="text-center mb-8">
+                <h4 class="font-serif text-2xl text-gold tracking-[0.2em] uppercase">III EYE COLLECTIVE</h4>
+                <p class="font-mono text-[10px] text-gold/50 tracking-[0.5em] mt-2">B R E A K &nbsp; T H R O U G H</p>
+            </div>
+
+            <div class="h-[1px] w-12 bg-gold/30 mb-8"></div>
+
+            <p class="font-mono text-[9px] text-gold/70 uppercase tracking-widest mb-12">
+                Handcrafted delights made with care,<br>intention, and a touch of wonder.
+            </p>
+
+            <div class="flex space-x-8 font-mono text-[9px] text-gold uppercase tracking-widest">
+                <a href="#" class="hover:text-cream">Privacy</a>
+                <a href="#" class="hover:text-cream">Terms</a>
+                <a href="#" class="hover:text-cream">Disclaimer</a>
+                <a href="https://www.instagram.com/iiieyecollective/" class="hover:text-cream">Instagram</a>
+            </div>
+
+            <p class="mt-12 font-mono text-[8px] text-white/20 uppercase">
+                © 2026 Chocolate Wellness Craft // Artisanal Excellence
+            </p>
         </div>
     </footer>
 
