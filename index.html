@@ -27,8 +27,8 @@
                         mono: ['"JetBrains Mono"', 'monospace'],
                     },
                     backgroundImage: {
-                        /* Fondo de trozos de chocolate oscuro para el Hero */
-                        'chocolate-hero': "linear-gradient(rgba(26, 15, 13, 0.6), rgba(26, 15, 13, 0.8)), url('https://images.unsplash.com/photo-1606312619070-d48b4c652a52?q=80&w=2070&auto=format&fit=crop')",
+                        /* Fondo de chocolate oscuro */
+                        'chocolate-hero': "url('https://images.unsplash.com/photo-1606312619070-d48b4c652a52?q=80&w=2070&auto=format&fit=crop')",
                     }
                 }
             }
@@ -40,11 +40,9 @@
             background-color: #1a0f0d;
             color: #f3e5ab;
         }
-        /* Bordes finos estilo "Technical" */
         .tech-border-b {
             border-bottom: 1px solid rgba(197, 160, 89, 0.3);
         }
-        /* Scrollbar personalizada */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #1a0f0d; }
         ::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 3px; }
@@ -68,29 +66,32 @@
 
     <header class="relative h-screen min-h-[800px] flex flex-col items-center justify-center bg-chocolate-hero bg-cover bg-center bg-no-repeat bg-fixed px-6">
         
-        <div class="flex items-center gap-4 mb-8 opacity-0 animate-[fadeIn_1s_ease-out_forwards]">
-            <div class="h-[1px] w-12 bg-gold/50"></div>
-            <span class="font-mono text-[10px] text-gold/80 tracking-[0.3em] uppercase">Consortium Protocol 01</span>
-            <div class="h-[1px] w-12 bg-gold/50"></div>
-        </div>
+        <div class="absolute inset-0 bg-cocoa/70 z-0"></div>
 
-        <div class="text-center max-w-6xl opacity-0 animate-[fadeIn_1s_ease-out_0.5s_forwards]">
-            <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl leading-[0.9] text-cream text-center mb-6">
+        <div class="relative z-10 text-center max-w-6xl flex flex-col items-center">
+            
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-[1px] w-12 bg-gold/50"></div>
+                <span class="font-mono text-[10px] text-gold/80 tracking-[0.3em] uppercase">Consortium Protocol 01</span>
+                <div class="h-[1px] w-12 bg-gold/50"></div>
+            </div>
+
+            <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl leading-[0.9] text-cream text-center mb-6 drop-shadow-lg">
                 Chocolate Wellness Craft.<br>
                 <span class="italic text-cream opacity-90">The Epoch of Intent.</span>
             </h1>
             
-            <div class="flex flex-col items-center text-center space-y-4 mb-16 mt-12">
-                <p class="font-mono text-[10px] md:text-xs text-gold/90 tracking-[0.4em] uppercase">
+            <div class="flex flex-col items-center text-center space-y-4 mb-16 mt-12 text-gold">
+                <p class="font-mono text-[10px] md:text-xs tracking-[0.4em] uppercase font-semibold">
                     TRANSFORM YOUR TASTE EXPERIENCE WITH
                 </p>
-                <p class="font-mono text-[10px] md:text-xs text-gold/90 tracking-[0.4em] uppercase">
+                <p class="font-mono text-[10px] md:text-xs tracking-[0.4em] uppercase font-semibold">
                     HANDCRAFTED DELIGHTS.
                 </p>
-                <p class="font-mono text-[10px] md:text-xs text-gold/90 tracking-[0.4em] uppercase">
+                <p class="font-mono text-[10px] md:text-xs tracking-[0.4em] uppercase font-semibold">
                     MADE WITH CARE, INTENTION, AND A TOUCH OF
                 </p>
-                <p class="font-mono text-[10px] md:text-xs text-gold/90 tracking-[0.4em] uppercase">
+                <p class="font-mono text-[10px] md:text-xs tracking-[0.4em] uppercase font-semibold">
                     WONDER.
                 </p>
             </div>
@@ -105,7 +106,7 @@
             </div>
         </div>
 
-        <div class="absolute bottom-12 font-mono text-[9px] text-cream/20 tracking-[0.5em] uppercase">
+        <div class="absolute bottom-12 font-mono text-[9px] text-cream/20 tracking-[0.5em] uppercase z-10">
             III Eye Collective
         </div>
     </header>
