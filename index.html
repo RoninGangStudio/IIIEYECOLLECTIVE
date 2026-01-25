@@ -230,7 +230,7 @@ function Hero() {
       `;
     }
 
-   // Gallery Component
+  // Gallery Component
     function Gallery() {
       const records = [
         { src: "https://i.ibb.co/fYZYjXHg/image.png", label: "DARK DECADENCE" },
@@ -244,9 +244,10 @@ function Hero() {
             <h2 class="text-7xl md:text-9xl font-serif mb-32">The <span class="italic">Archives.</span></h2>
             <div class="grid md:grid-cols-3 gap-12">
               ${records.map((rec, i) => `
-                <div> <div class="aspect-[3/4] bg-black mb-8 border border-white/10 overflow-hidden shadow-2xl">
-                    <img src="${rec.src}" class="w-full h-full object-cover" alt="${rec.label}" />
-                    </div>
+                <div>
+                  <div class="aspect-[3/4] bg-black mb-8 border border-white/10 overflow-hidden shadow-2xl relative">
+                    <img src="${rec.src}" class="w-full h-full object-contain" alt="${rec.label}" />
+                  </div>
                   <h4 class="text-xs tracking-[0.4em] font-bold uppercase text-[#C5A059]">${rec.label}</h4>
                 </div>
               `).join('')}
@@ -370,6 +371,7 @@ function Hero() {
   </script>
 </body>
 </html>
+
 
 
 
