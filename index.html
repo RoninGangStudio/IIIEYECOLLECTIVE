@@ -232,11 +232,15 @@ function Hero() {
 
   // Gallery Component
     function Gallery() {
-      // AQUÍ ESTÁN LOS NOMBRES EXACTOS DE TUS ARCHIVOS (Extraídos de tu repositorio)
       const records = [
-        { src: "./chobariiieyeco.png", label: "DARK DECADENCE" },
-        { src: "./RECIPE.png", label: "TECHNICAL RECIPE" },
-        { src: "./zengumgarden.png", label: "ZEN GUMI DOSSIER" }
+        // INTENTO 1: Nombre estándar (asegúrate que sea minúscula en tu carpeta)
+        { src: "chobariiieyeco.png", label: "DARK DECADENCE" },
+        
+        // NOTA: Si sigue sin verse, cambia la línea de arriba por esta otra con .PNG mayúscula:
+        // { src: "chobariiieyeco.PNG", label: "DARK DECADENCE" },
+
+        { src: "RECIPE.png", label: "TECHNICAL RECIPE" },
+        { src: "zengumgarden.png", label: "ZEN GUMI DOSSIER" }
       ];
 
       return `
@@ -257,7 +261,6 @@ function Hero() {
         </section>
       `;
     }
-
     // Contact Component
     function Contact() {
       return `
@@ -372,6 +375,7 @@ function Hero() {
   </script>
 </body>
 </html>
+
 
 
 
