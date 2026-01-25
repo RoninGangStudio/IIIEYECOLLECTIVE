@@ -231,33 +231,34 @@ function Hero() {
     }
 
 // Hero Component
-    function Hero() {
-      return `
-        <section class="relative h-screen flex items-center justify-center overflow-hidden">
-          <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover scale-105" alt="Hero BG" />
-            <div class="absolute inset-0 bg-gradient-to-b from-[#1a0f0d]/95 via-[#1a0f0d]/40 to-[#1a0f0d]"></div>
-          </div>
-          <div class="relative z-10 text-center px-6 max-w-7xl mx-auto">
-            <div class="mb-6 inline-flex items-center space-x-3 opacity-60">
-              <div class="h-[1px] w-8 bg-[#C5A059]"></div>
-              <span class="text-[10px] uppercase tracking-[0.6em] text-[#C5A059] font-bold">Consortium Protocol 01</span>
-              <div class="h-[1px] w-8 bg-[#C5A059]"></div>
-            </div>
+function Hero() {
+  return `
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <!-- Cambié la imagen de Unsplash por tu foto1.png -->
+        <img src="foto1.png" class="w-full h-full object-cover scale-105" alt="Hero Background" />
+        <div class="absolute inset-0 bg-gradient-to-b from-[#1a0f0d]/95 via-[#1a0f0d]/40 to-[#1a0f0d]"></div>
+      </div>
+      <div class="relative z-10 text-center px-6 max-w-7xl mx-auto">
+        <div class="mb-6 inline-flex items-center space-x-3 opacity-60">
+          <div class="h-[1px] w-8 bg-[#C5A059]"></div>
+          <span class="text-[10px] uppercase tracking-[0.6em] text-[#C5A059] font-bold">Consortium Protocol 01</span>
+          <div class="h-[1px] w-8 bg-[#C5A059]"></div>
+        </div>
 
-            <h1 class="text-[#f3e5ab] text-4xl md:text-8xl lg:text-9xl mb-12 font-serif leading-tight tracking-tighter">
-              <span class="block md:whitespace-nowrap">Chocolate Wellness Craft.</span>
-              <span class="block italic opacity-90">The Epoch of Intent.</span>
-            </h1>
+        <h1 class="text-[#f3e5ab] text-4xl md:text-8xl lg:text-9xl mb-12 font-serif leading-tight tracking-tighter">
+          <span class="block md:whitespace-nowrap">Chocolate Wellness Craft.</span>
+          <span class="block italic opacity-90">The Epoch of Intent.</span>
+        </h1>
 
-            <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">
-              <a href="#catalog" class="px-12 py-5 bg-[#f3e5ab] text-[#1a0f0d] uppercase tracking-widest text-[10px] font-bold transition-all hover:bg-white">Consult The Dossier</a>
-              <a href="#about" class="px-12 py-5 border border-[#f3e5ab]/20 text-[#f3e5ab] uppercase tracking-widest text-[10px] font-bold backdrop-blur-sm hover:border-[#f3e5ab] transition-all">The Epoch</a>
-            </div>
-          </div>
-        </section>
-      `;
-    }
+        <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">
+          <a href="#catalog" class="px-12 py-5 bg-[#f3e5ab] text-[#1a0f0d] uppercase tracking-widest text-[10px] font-bold transition-all hover:bg-white">Consult The Dossier</a>
+          <a href="#about" class="px-12 py-5 border border-[#foto1.png]/20 text-[#f3e5ab] uppercase tracking-widest text-[10px] font-bold backdrop-blur-sm hover:border-[#f3e5ab] transition-all">The Epoch</a>
+        </div>
+      </div>
+    </section>
+  `;
+}
     
     // Contact Component
     function Contact() {
@@ -373,6 +374,7 @@ function Hero() {
   </script>
 </body>
 </html>
+
 
 
 
