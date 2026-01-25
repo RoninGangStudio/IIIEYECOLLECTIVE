@@ -230,12 +230,12 @@ function Hero() {
       `;
     }
 
- function Gallery() {
+ // Gallery Component
+    function Gallery() {
       const records = [
-        // Le agregamos un número aleatorio al final para engañar al cache
-        { src: "foto1.png?v=1", label: "DARK DECADENCE" },
-        { src: "foto2.png?v=1", label: "TECHNICAL RECIPE" },
-        { src: "foto3.png?v=1", label: "ZEN GUMI DOSSIER" }
+        { src: "foto1.png", label: "DARK DECADENCE" },
+        { src: "foto2.png", label: "TECHNICAL RECIPE" },
+        { src: "foto3.png", label: "ZEN GUMI DOSSIER" }
       ];
 
       return `
@@ -245,12 +245,13 @@ function Hero() {
             <div class="grid md:grid-cols-3 gap-12">
               ${records.map((rec, i) => `
                 <div>
-                  <div class="mb-8 border border-white/10 shadow-2xl bg-black min-h-[300px] flex items-center justify-center">
+                  <div class="mb-8 border border-white/10 shadow-2xl bg-black min-h-[400px]">
                     <img 
-                      src="${rec.src}" 
+                      src="./${rec.src}" 
                       class="w-full h-auto block" 
                       alt="${rec.label}"
-                      onerror="this.src=this.src.replace('.png', '.jpg')" 
+                      onload="console.log('Cargada: ' + this.src)"
+                      onerror="console.log('Error en: ' + this.src); this.src='${rec.src.toUpperCase()}'"
                     />
                   </div>
                   <h4 class="text-xs tracking-[0.4em] font-bold uppercase text-[#C5A059]">${rec.label}</h4>
@@ -376,6 +377,7 @@ function Hero() {
   </script>
 </body>
 </html>
+
 
 
 
