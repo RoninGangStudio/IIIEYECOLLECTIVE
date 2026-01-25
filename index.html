@@ -242,10 +242,14 @@
           <div class="max-w-7xl mx-auto">
             <h2 class="text-7xl md:text-9xl font-serif mb-32">The <span class="italic">Archives.</span></h2>
             <div class="grid md:grid-cols-3 gap-12">
-              ${records.map((rec, i) => `
-                <div>
-                  <div class="mb-8 border border-white/10 shadow-2xl bg-black">
-                    <img src="${rec.src}" class="w-full h-auto block" alt="${rec.label}" />
+              ${records.map((rec) => `
+                <div class="flex flex-col">
+                  <div class="mb-8 border border-white/10 shadow-2xl bg-black overflow-hidden">
+                    <img 
+                      src="${rec.src}" 
+                      class="w-full h-auto block object-cover" 
+                      alt="${rec.label}" 
+                    />
                   </div>
                   <h4 class="text-xs tracking-[0.4em] font-bold uppercase text-[#C5A059]">${rec.label}</h4>
                 </div>
@@ -370,3 +374,4 @@
   </script>
 </body>
 </html>
+
