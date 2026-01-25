@@ -230,13 +230,12 @@ function Hero() {
       `;
     }
 
-  // Gallery Component
-    function Gallery() {
+ function Gallery() {
       const records = [
-        // AHORA SÍ: Los nombres coinciden con tu captura del repositorio
-        { src: "foto1.png", label: "DARK DECADENCE" },
-        { src: "foto2.png", label: "TECHNICAL RECIPE" },
-        { src: "foto3.png", label: "ZEN GUMI DOSSIER" }
+        // Le agregamos un número aleatorio al final para engañar al cache
+        { src: "foto1.png?v=1", label: "DARK DECADENCE" },
+        { src: "foto2.png?v=1", label: "TECHNICAL RECIPE" },
+        { src: "foto3.png?v=1", label: "ZEN GUMI DOSSIER" }
       ];
 
       return `
@@ -246,8 +245,13 @@ function Hero() {
             <div class="grid md:grid-cols-3 gap-12">
               ${records.map((rec, i) => `
                 <div>
-                  <div class="mb-8 border border-white/10 shadow-2xl bg-black">
-                    <img src="${rec.src}" class="w-full h-auto block" alt="${rec.label}" />
+                  <div class="mb-8 border border-white/10 shadow-2xl bg-black min-h-[300px] flex items-center justify-center">
+                    <img 
+                      src="${rec.src}" 
+                      class="w-full h-auto block" 
+                      alt="${rec.label}"
+                      onerror="this.src=this.src.replace('.png', '.jpg')" 
+                    />
                   </div>
                   <h4 class="text-xs tracking-[0.4em] font-bold uppercase text-[#C5A059]">${rec.label}</h4>
                 </div>
@@ -372,6 +376,7 @@ function Hero() {
   </script>
 </body>
 </html>
+
 
 
 
