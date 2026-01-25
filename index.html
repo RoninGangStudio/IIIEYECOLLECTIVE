@@ -232,10 +232,11 @@ function Hero() {
 
   // Gallery Component
     function Gallery() {
+      // AQUÍ ESTÁN LOS NOMBRES EXACTOS DE TUS ARCHIVOS (Extraídos de tu repositorio)
       const records = [
-        { src: "https://i.ibb.co/fYZYjXHg/image.png", label: "DARK DECADENCE" },
-        { src: "https://i.ibb.co/ShKpnF4/image.png", label: "TECHNICAL RECIPE" },
-        { src: "https://i.ibb.co/NndvybP3/image.png", label: "ZEN GUMI DOSSIER" }
+        { src: "./chobariiieyeco.png", label: "DARK DECADENCE" },
+        { src: "./RECIPE.png", label: "TECHNICAL RECIPE" },
+        { src: "./zengumgarden.png", label: "ZEN GUMI DOSSIER" }
       ];
 
       return `
@@ -245,8 +246,8 @@ function Hero() {
             <div class="grid md:grid-cols-3 gap-12">
               ${records.map((rec, i) => `
                 <div>
-                  <div class="aspect-[3/4] bg-black mb-8 border border-white/10 overflow-hidden shadow-2xl relative">
-                    <img src="${rec.src}" class="w-full h-full object-contain" alt="${rec.label}" />
+                  <div class="mb-8 border border-white/10 shadow-2xl bg-black">
+                    <img src="${rec.src}" class="w-full h-auto block" alt="${rec.label}" />
                   </div>
                   <h4 class="text-xs tracking-[0.4em] font-bold uppercase text-[#C5A059]">${rec.label}</h4>
                 </div>
@@ -371,6 +372,7 @@ function Hero() {
   </script>
 </body>
 </html>
+
 
 
 
