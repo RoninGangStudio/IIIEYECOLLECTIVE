@@ -44,6 +44,9 @@
   <div id="root"></div>
 
   <script type="module">
+    // --- URLs DEL REPOSITORIO (Para asegurar que carguen siempre) ---
+    const REPO_URL = "https://raw.githubusercontent.com/RoninGangStudio/IIIEYECOLLECTIVE/main";
+    
     // --- COMPONENTES DEL SISTEMA ---
 
     function Navbar() {
@@ -57,7 +60,10 @@
       return `
         <nav class="fixed w-full z-[100] transition-all duration-700 bg-transparent py-8">
           <div class="max-w-7xl mx-auto px-8 flex justify-between items-center">
-            <a href="#" onclick="event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' });" class="text-xl md:text-2xl font-serif tracking-[0.4em] uppercase text-[#f3e5ab] z-50">III EYE COLLECTIVE</a>
+            
+            <a href="#" onclick="event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' });" class="z-50 block">
+               <img src="${REPO_URL}/logoiiieye.png" alt="III EYE COLLECTIVE" class="h-12 md:h-16 w-auto object-contain hover:opacity-80 transition-opacity" />
+            </a>
             
             <div class="hidden md:flex space-x-12 text-[9px] uppercase tracking-[0.5em] text-[#f3e5ab]/60 font-semibold">
               ${navLinks.map(link => `
@@ -135,7 +141,7 @@
                 <h3 class="text-[#C5A059] text-2xl md:text-4xl font-serif tracking-[0.4em] uppercase mb-10 text-center">III EYE COLLECTIVE</h3>
                 
                 <div class="relative w-full aspect-square bg-black flex items-center justify-center p-12 shadow-2xl border border-white/5">
-                  <img src="foto1.png" class="w-full h-auto" alt="Art" />
+                  <img src="${REPO_URL}/foto1.png" class="w-full h-auto" alt="Art" />
                   <div class="absolute bottom-0 w-full bg-black/80 py-3 text-center border-t border-white/10">
                     <span class="text-[9px] uppercase tracking-widest text-[#C5A059] font-mono">ARCHIVE REF: qYRLG007</span>
                   </div>
@@ -198,10 +204,11 @@
     }
 
     function Gallery() {
+      // CORRECCIÓN: Uso de URLs absolutas del repo para foto1, foto2 y foto3
       const records = [
-        { src: "foto1.png", label: "DARK DECADENCE" },
-        { src: "foto2.png", label: "TECHNICAL RECIPE" },
-        { src: "foto3.png", label: "ZEN GUMI DOSSIER" }
+        { src: `${REPO_URL}/foto1.png`, label: "DARK DECADENCE" },
+        { src: `${REPO_URL}/foto2.png`, label: "TECHNICAL RECIPE" },
+        { src: `${REPO_URL}/foto3.png`, label: "ZEN GUMI DOSSIER" }
       ];
 
       return `
