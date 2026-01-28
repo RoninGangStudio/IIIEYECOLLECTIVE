@@ -44,9 +44,8 @@
   <div id="root"></div>
 
   <script type="module">
-    // --- URLs DEL REPOSITORIO ---
-    // Aseguramos que carguen desde la fuente raw de GitHub
-    const REPO_URL = "https://raw.githubusercontent.com/RoninGangStudio/IIIEYECOLLECTIVE/main";
+    // --- SOLUCIÓN: Usar jsDelivr CDN que NO tiene rate limiting ---
+    const REPO_URL = "https://cdn.jsdelivr.net/gh/RoninGangStudio/IIIEYECOLLECTIVE@main";
     
     // --- COMPONENTES DEL SISTEMA ---
 
@@ -63,7 +62,7 @@
           <div class="max-w-7xl mx-auto px-8 flex justify-between items-center">
             
             <a href="#" onclick="event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' });" class="z-50 flex items-center gap-4 group">
-               <img src="${REPO_URL}/logoiiieye.png" alt="Logo" class="h-10 md:h-14 w-auto object-contain hover:opacity-80 transition-opacity" />
+               <img src="${REPO_URL}/logoiiieye.png" alt="Logo" class="h-10 md:h-14 w-auto object-contain hover:opacity-80 transition-opacity" onerror="this.style.display='none'" />
                <span class="text-lg md:text-xl font-serif tracking-[0.2em] uppercase text-[#f3e5ab] group-hover:text-white transition-colors">
                  III EYE COLLECTIVE
                </span>
@@ -145,7 +144,7 @@
                 <h3 class="text-[#C5A059] text-2xl md:text-4xl font-serif tracking-[0.4em] uppercase mb-10 text-center">III EYE COLLECTIVE</h3>
                 
                 <div class="relative w-full aspect-square bg-black flex items-center justify-center p-12 shadow-2xl border border-white/5">
-                  <img src="https://github.com/RoninGangStudio/IIIEYECOLLECTIVE/blob/main/logoiiieye.png" class="w-full h-auto object-cover" alt="Art" />
+                  <img src="${REPO_URL}/logoiiieye.png" class="w-full h-auto object-contain" alt="III Eye Collective Logo" onerror="this.src='https://via.placeholder.com/400x400/1a0f0d/C5A059?text=III+EYE+COLLECTIVE'" />
                   <div class="absolute bottom-0 w-full bg-black/80 py-3 text-center border-t border-white/10">
                     <span class="text-[9px] uppercase tracking-widest text-[#C5A059] font-mono">ARCHIVE REF: qYRLG007</span>
                   </div>
@@ -208,11 +207,11 @@
     }
 
     function Gallery() {
-      // CORRECCIÓN: Nos aseguramos de que foto1, foto2 y foto3 estén apuntando al repositorio
+      // Usando jsDelivr CDN - más rápido y sin rate limiting
       const records = [
-        { src: "https://github.com/RoninGangStudio/IIIEYECOLLECTIVE/blob/main/foto1.png", label: "DARK DECADENCE" },
-        { src: "https://github.com/RoninGangStudio/IIIEYECOLLECTIVE/blob/main/foto2.png", label: "TECHNICAL RECIPE" },
-        { src: "https://github.com/RoninGangStudio/IIIEYECOLLECTIVE/blob/main/foto3.png", label: "ZEN GUMI DOSSIER" }
+        { src: `${REPO_URL}/foto1.png`, label: "DARK DECADENCE" },
+        { src: `${REPO_URL}/foto2.png`, label: "TECHNICAL RECIPE" },
+        { src: `${REPO_URL}/foto3.png`, label: "ZEN GUMI DOSSIER" }
       ];
 
       return `
@@ -223,7 +222,7 @@
               ${records.map((rec) => `
                 <div class="flex flex-col">
                   <div class="mb-8 border border-white/10 shadow-2xl bg-black overflow-hidden relative group">
-                    <img src="${rec.src}" class="w-full aspect-[4/5] object-cover block transition-transform duration-700 group-hover:scale-105" alt="${rec.label}" />
+                    <img src="${rec.src}" class="w-full aspect-[4/5] object-cover block transition-transform duration-700 group-hover:scale-105" alt="${rec.label}" onerror="this.src='https://via.placeholder.com/400x500/1a0f0d/C5A059?text=${encodeURIComponent(rec.label)}'" />
                   </div>
                   <h4 class="text-xs tracking-[0.4em] font-bold uppercase text-[#C5A059]">${rec.label}</h4>
                 </div>
@@ -338,4 +337,3 @@
   </script>
 </body>
 </html>
-
