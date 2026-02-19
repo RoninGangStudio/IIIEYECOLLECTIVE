@@ -44,7 +44,6 @@
   <div id="root"></div>
 
   <script type="module">
-    // --- SOLUCIÓN: Usar jsDelivr CDN que NO tiene rate limiting ---
     const REPO_URL = "https://cdn.jsdelivr.net/gh/RoninGangStudio/IIIEYECOLLECTIVE@main";
     
     // --- COMPONENTES DEL SISTEMA ---
@@ -144,7 +143,7 @@
                 <h3 class="text-[#C5A059] text-2xl md:text-4xl font-serif tracking-[0.4em] uppercase mb-10 text-center">III EYE COLLECTIVE</h3>
                 
                 <div class="relative w-full aspect-square bg-black flex items-center justify-center p-12 shadow-2xl border border-white/5">
-                  <img src="https://raw.githubusercontent.com/RoninGangStudio/IIIEYECOLLECTIVE/main/foto1.png" class="w-full h-auto object-contain" alt="Art Specimen" onerror="this.src='https://via.placeholder.com/400x400/1a0f0d/C5A059?text=FOTO+1'" />
+                  <img src="${REPO_URL}/foto1.png" class="w-full h-auto object-contain" alt="Art Specimen" onerror="this.src='https://via.placeholder.com/400x400/1a0f0d/C5A059?text=FOTO+1'" />
                   <div class="absolute bottom-0 w-full bg-black/80 py-3 text-center border-t border-white/10">
                     <span class="text-[9px] uppercase tracking-widest text-[#C5A059] font-mono">ARCHIVE REF: qYRLG007</span>
                   </div>
@@ -238,10 +237,10 @@
           <div class="max-w-xl mx-auto text-center">
             <h2 class="text-5xl font-serif mb-12">Inquire.</h2>
             <div id="contact-form">
-              <form onsubmit="handleContactSubmit(event)" class="space-y-6 text-left">
-                <input required type="text" placeholder="Name" class="w-full bg-white/5 border border-white/10 p-5 outline-none focus:border-[#C5A059] transition-all text-[#f3e5ab]" />
-                <input required type="email" placeholder="Email" class="w-full bg-white/5 border border-white/10 p-5 outline-none focus:border-[#C5A059] transition-all text-[#f3e5ab]" />
-                <textarea required rows="4" placeholder="Message" class="w-full bg-white/5 border border-white/10 p-5 outline-none focus:border-[#C5A059] transition-all text-[#f3e5ab]"></textarea>
+              <form action="https://formspree.io/f/xqeddekv" method="POST" class="space-y-6 text-left">
+                <input required type="text" name="name" placeholder="Name" class="w-full bg-white/5 border border-white/10 p-5 outline-none focus:border-[#C5A059] transition-all text-[#f3e5ab]" />
+                <input required type="email" name="email" placeholder="Email" class="w-full bg-white/5 border border-white/10 p-5 outline-none focus:border-[#C5A059] transition-all text-[#f3e5ab]" />
+                <textarea required name="message" rows="4" placeholder="Message" class="w-full bg-white/5 border border-white/10 p-5 outline-none focus:border-[#C5A059] transition-all text-[#f3e5ab]"></textarea>
                 <button type="submit" class="w-full py-6 bg-[#C5A059] text-[#1a0f0d] font-bold uppercase tracking-widest hover:bg-[#f3e5ab] transition-all shadow-xl">Send Inquiry</button>
               </form>
             </div>
@@ -297,13 +296,6 @@
       }
     };
 
-    window.handleContactSubmit = function(e) {
-      e.preventDefault();
-      document.getElementById('contact-form').innerHTML = `
-        <div class="p-12 border border-[#C5A059] text-[#f3e5ab] italic font-serif text-2xl animate-pulse">Message Transmitted.</div>
-      `;
-    };
-
     function renderApp() {
       const root = document.getElementById('root');
       root.innerHTML = `
@@ -321,7 +313,8 @@
 
       window.addEventListener('scroll', () => {
         const nav = document.querySelector('nav');
-        const isMenuOpen = document.getElementById('mobile-menu').classList.contains('opacity-100');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const isMenuOpen = mobileMenu && mobileMenu.classList.contains('opacity-100');
         if (window.scrollY > 20 || isMenuOpen) {
           nav.classList.add('bg-[#1a0f0d]/95', 'backdrop-blur-xl', 'py-5', 'shadow-2xl', 'border-b', 'border-white/5');
           nav.classList.remove('bg-transparent', 'py-8');
@@ -336,5 +329,3 @@
   </script>
 </body>
 </html>
-
-
